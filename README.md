@@ -1,1 +1,3 @@
-# Grinder__bwang30_jli31_dbi30_byang30
+Grinder: Brian (Beedubs) Wang, Donald Bi, Jian Hong Li, Brian (Paul) Yang
+Softdev
+P01: TBD
