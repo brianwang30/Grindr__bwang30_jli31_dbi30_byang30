@@ -7,18 +7,18 @@ app.secret_key = "HI" # dummy key CHANGE LATER
 
 @app.route('/', methods=['GET'])
 def login():
-  if 'username' in session:
-    return redirect('/home') # go to displ homepage if has cookies
-  return render_template('login.html')
+#  if 'username' in session:
+#    return redirect('/home') # go to displ homepage if has cookies
+#  return render_template('login.html')
+  return redirect('/home')
 
-
+'''
 @app.route('/register', methods=['GET'])
 def register():
   if 'username' in session:
     return redirect('/home') # go to displ homepage if has cookies
   return render_template('registration.html')
 
-# verify username not in use
 @app.route('/verify', methods=['GET', 'POST'])
 def make_account():
   if request.method != 'POST':
@@ -33,7 +33,6 @@ def make_account():
   session['username'] = request.form['username']
   return redirect('/home')
 
-# authenticate login
 @app.route('/auth', methods=['GET', 'POST'])
 def authenticate():
   if request.method != 'POST':
@@ -46,15 +45,15 @@ def authenticate():
   
   session['username'] = request.form['username']
   return redirect('/home')
+'''
 
-# homepage. displays stories contributed to
+# homepage
 @app.route('/home', methods=['GET'])
 def home():
-  if not session:
-    return redirect('/')
+  #if not session:
+  #  return redirect('/')
 
   return render_template('index.html', name=session['username'])
-
   
 if __name__ == '__main__':
   app.debug = True
