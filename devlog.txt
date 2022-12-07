@@ -17,14 +17,23 @@ AO4 - Grassameter Insult
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 ==============================================================
-Jian Hong Li -- 2022-11-06 14:04
+Jian Hong Li -- 2022-12-06 14:04
 --------------------------------------------------------------
 The script design doc feedbacks
 Add bootstrap to component map
 Specify insults based on grass level
 
 ==============================================================
-Donald Bi -- 2022-11-07 12:31
+Donald Bi -- 2022-12-07 12:31
 --------------------------------------------------------------
 Feedback told us to specify certain elements such as table values, and also to include bootstrap to our design.
 Revised the doc by adding bootstrap to design and diagram and explaining quiz grass value.
+
+Brian Wang -- 2022-12-07 13:00
+--------------------------------------------------------------
+Made requirements.txt
+Updated readme
+
+All -- 2022-12-07 13:00
+--------------------------------------------------------------
+Begun launch codes
