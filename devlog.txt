@@ -54,3 +54,8 @@ Created function in api.py to get an anime along with its cover picture and name
 Brian (Paul) Yang -- 2022-12-8 14:00
 --------------------------------------------------------------
 Created function in api.py with Riot Games api to find level in League of Legends
+
+Brian (Beedub) Wang -- 2022-12-8 14:00
+--------------------------------------------------------------
+Made cookie function
+Broke login function (??? I think i need to log the cookies somewhere else)
