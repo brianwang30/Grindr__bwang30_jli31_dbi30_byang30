@@ -44,3 +44,8 @@ Website functional (technically!)
 Brian (Paul) Yang -- 2022-12-8 11:00
 --------------------------------------------------------------
 Created function in api.py to pull a random pokemon's info (sprite, type(s), name)
+
+==============================================================
+Brian (Paul) Yang -- 2022-12-8 12:46
+--------------------------------------------------------------
+Created function in api.py to get an anime along with its cover picture and name 
