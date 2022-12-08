@@ -3,3 +3,7 @@ body {
     display: flex;
     justify-content: center;
 }
+
+body.index {
+    background-image: url(https://wallpapercave.com/wp/wp10502583.jpg);
+}
