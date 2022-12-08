@@ -1,11 +1,11 @@
 import requests
 import random
 
-#PokeApi Dict Lists name/sprite link/type(s )
+#PokeApi Dict Lists name/sprite link/type(s)
 def random_poke():
     info = {}
-    rand_index = random.randrange(900)
-    request_data = requests.get(f"https://pokeapi.co/api/v2/pokemon/400")
+    rand_index = random.randrange(900) #around the max amount of pokemon
+    request_data = requests.get(f"https://pokeapi.co/api/v2/pokemon/{rand_index}")
     data = request_data.json()
 
     #Name
