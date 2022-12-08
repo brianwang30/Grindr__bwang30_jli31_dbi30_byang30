@@ -39,3 +39,8 @@ All -- 2022-12-07 13:00
 Begun launch codes
 Begun... code? coding?
 Website functional (technically!)
+
+==============================================================
+Brian (Paul) Yang -- 2022-12-8 11:00
+--------------------------------------------------------------
+Created function in api.py to pull a random pokemon's info (sprite, type(s), name)
