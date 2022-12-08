@@ -42,3 +42,21 @@ def random_anime():
     info["name"] = anime_data["node"]["title"]
     #Image
     info["image"] = anime_data["node"]["main_picture"]["large"]
+
+def find_summoner_level(user):
+    try: #check for if text file for key exist
+        with open("keys/RiotAPI.txt", "r") as file:
+            api_key = file.read().strip()
+            token = api_key
+    except:
+        print("No API key provided.")
+
+    url = f"https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{user}"
+    data = json.loads(requests.get(url, headers = {"X-Riot-Token" : token}).text)
+
+    return data["summonerLevel"]
+
+def find_summoner_mastery():
+    #degeneracy?
+    #need summoner id too hard to find for now 
+    return None
