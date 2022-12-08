@@ -36,11 +36,11 @@ def make_account():
 @app.route('/auth', methods=['GET', 'POST'])
 def authenticate():
   # Method to check if login in DB
-  print('hi')
-  print(verify(request.form.get('username'), request.form.get('password')))
-  if verify(request.form.get('username'), request.form.get('password')):
+  
+  if not verify(request.form.get('username'), request.form.get('password')):
     return render_template('index.html', status='Incorrect login info')
   #return render_template('profile.html')
+  session['username'] = request.form['username']
   return redirect('/profile')
 
 #prof page

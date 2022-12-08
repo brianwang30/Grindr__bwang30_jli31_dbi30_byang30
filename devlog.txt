@@ -29,13 +29,11 @@ Donald Bi -- 2022-12-07 12:31
 Feedback told us to specify certain elements such as table values, and also to include bootstrap to our design.
 Revised the doc by adding bootstrap to design and diagram and explaining quiz grass value.
 
-==============================================================
 Brian Wang -- 2022-12-07 13:00
 --------------------------------------------------------------
 Made requirements.txt
 Updated readme
 
-==============================================================
 All -- 2022-12-07 13:00
 --------------------------------------------------------------
 Begun launch codes
@@ -47,24 +45,24 @@ Brian (Paul) Yang -- 2022-12-8 11:00
 --------------------------------------------------------------
 Created function in api.py to pull a random pokemon's info (sprite, type(s), name)
 
-==============================================================
 Brian (Paul) Yang -- 2022-12-8 12:46
 --------------------------------------------------------------
 Created function in api.py to get an anime along with its cover picture and name
 
-==============================================================
 Brian (Paul) Yang -- 2022-12-8 14:00
 --------------------------------------------------------------
 Created function in api.py with Riot Games api to find level in League of Legends
 
-==============================================================
 Brian (Beedub) Wang -- 2022-12-8 14:00
 --------------------------------------------------------------
 Made cookie function
 Broke login function (??? I think i need to log the cookies somewhere else)
 
-==============================================================
 Donald Bi -- 2022-12-8 14:00
 --------------------------------------------------------------
 Added more stying to the login page, now it has a background and the buttons have effects when hovered.
 
+Brian (Beedub) Wang -- 2022-12-8 17:49
+--------------------------------------------------------------
+Login works again (cookie issue, skill issue)
+devlog reformat
