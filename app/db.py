@@ -10,7 +10,7 @@ c.execute("CREATE TABLE if not Exists users(ID INTEGER PRIMARY KEY AUTOINCREMENT
 # Insult database
 c.execute("CREATE TABLE if not Exists insult(Insult_ID INTEGER PRIMARY KEY AUTOINCREMENT, Insult_Text TEXT, Grass_Level INTEGER, API_INFO TEXT);")
 # Grass meter
-c.execute("CREATE TABLE if not Exists grassameter(ID INTEGER PRIMARY KEY AUTOINCREMENT, Quiz_Grass INTEGER, Grass INTEGER);")
+c.execute("CREATE TABLE if not Exists grassmeter(ID INTEGER PRIMARY KEY AUTOINCREMENT, Quiz_Grass INTEGER, Grass INTEGER);")
 # Game accounts
 c.execute("CREATE TABLE if not Exists game(ID INTEGER PRIMARY KEY AUTOINCREMENT, Game TEXT, Game_Username);")
 db.commit()
@@ -55,12 +55,41 @@ def get_insult(grass_level):
     c = db_connect()
     c.execute('SELECT Insult_Text FROM insult WHERE Grass_Level =?;' ,(grass_level,))
     text = c.fetchone()
+    db_close()
     return text[1] 
         
 def get_userID(username):
     c = db_connect()
     if not user_exist(username):
         return False
-    c.execute('SELECT ID FROM users WHER username =?;', (username))
+    c.execute('SELECT ID FROM users WHERE username =?;', (username,))
+    db_close()
     text = c.fetchone()
     return text[0]
+
+def ID_exist(id):
+    c = db_connect()
+    c.execute('SELECT ID FROM users WHERE id =?;', (id,))
+    db_close()
+    text = c.fetchone()
+    if id is None:
+        return False
+    return True
+
+def get_grass(id):
+    c = db_connect()
+    if ID_exist():
+        c.execute('SELECT Grass FROM grassmeter WHERE id =?', (id,))
+        db_close()
+        text = c.fetchone()
+        return text[2]
+    return False
+
+def update_grass(id, grass):
+    c = db_connect()
+    old = get_grass(id)
+    if ID_exist:
+        c.execute('UPDATE grassmeter SET grass =? WHERE id=?', (old + grass, id))
+        db_close()
+    return False
+    
