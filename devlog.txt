@@ -66,3 +66,7 @@ Brian (Beedub) Wang -- 2022-12-8 17:49
 --------------------------------------------------------------
 Login works again (cookie issue, skill issue)
 devlog reformat
+
+Jian Hong Li -- 2022-12-09 13:37
+Added some function for db
+-------------------------------------------------------------

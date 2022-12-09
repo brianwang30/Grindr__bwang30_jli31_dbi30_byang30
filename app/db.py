@@ -33,12 +33,13 @@ def create_user(username, password):
 def user_exist(username):
     c = db_connect()
     c.execute('SELECT username FROM users WHERE username = ?;', (username,))
-    check = c.fetchone();
+    check = c.fetchone()
     db_close()
     if check is None:
         return False
     else:
         return True
+
 
 def verify(username, password):
     c = db_connect()
@@ -50,4 +51,16 @@ def verify(username, password):
     else:
         return False
 
+def get_insult(grass_level):
+    c = db_connect()
+    c.execute('SELECT Insult_Text FROM insult WHERE Grass_Level =?;' ,(grass_level,))
+    text = c.fetchone()
+    return text[1] 
         
+def get_userID(username):
+    c = db_connect()
+    if not user_exist(username):
+        return False
+    c.execute('SELECT ID FROM users WHER username =?;', (username))
+    text = c.fetchone()
+    return text[0]
