@@ -63,15 +63,16 @@ def get_userID(username):
     if not user_exist(username):
         return False
     c.execute('SELECT ID FROM users WHERE username =?;', (username,))
-    db_close()
     text = c.fetchone()
+    db_close()
     return text[0]
 
 def ID_exist(id):
     c = db_connect()
     c.execute('SELECT ID FROM users WHERE id =?;', (id,))
-    db_close()
     text = c.fetchone()
+    db_close()
+
     if id is None:
         return False
     return True
@@ -80,8 +81,8 @@ def get_grass(id):
     c = db_connect()
     if ID_exist():
         c.execute('SELECT Grass FROM grassmeter WHERE id =?', (id,))
-        db_close()
         text = c.fetchone()
+        db_close()
         return text[2]
     return False
 
