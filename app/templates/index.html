@@ -8,7 +8,7 @@
     <title>Grass</title>
 </head>
 <body class="index d-flex flex-column align-items-center gap-5">
-    <h1 class="site-title">Your Personal Grass o'meter</h1>
+    <h1 class="site-title">Your Personal Grass o'Meter</h1>
     <div class="start-form container p-4 w-25 rounded-4">
         <h2 class="mb-4">Login</h2>
         <form method="POST">
@@ -21,13 +21,13 @@
                 <input type="password" class="form-control" name="password" required>
             </div>
             <button class="p-1 mb-3 rounded-3"formaction="/auth">Login</button>
-            <div class="label">Don't have an account?</div>
+            <div class="label mb-1">Don't have an account?</div>
         </form>
         <form>
             <button class="p-1 rounded-3" formaction="/register">Register Here</button>
         </form>
+        <label class="text-danger error mt-2">{{status}}</label>
     </div>
+    <p class="green-text">The amount of grass in the background correlates to the amount of grass you touch.</p>
 </body>
-
-<h1> {{status}} </h1>
 </html>

@@ -8,19 +8,30 @@
     <title>Grass</title>
 </head>
 
-<h1> Registeration Page </h1>
-
-<body class="container align-items-center">
-    <form class="container p-4 w-25 border rounded-4" action = "/signup" method="POST">
-        <div class="mb-4">
-            <div class="label mb-2">Username</div>
-            <input type="text" class="form-control" name="username" required>
-        </div>
-        <div class="mb-3">
-            <div class="label mb-2">Password</div>
-            <input type="password" class="form-control" name="password" required>
-        </div>
-        <input title="Signup" type = "submit">
-    </form>
+<body class="register d-flex flex-column align-items-center gap-5">
+    <h1 class="site-title">Your Personal Grass o'Meter</h1>
+    <div class="start-form container p-4 w-25 rounded-4">
+        <h2 class="mb-4">Register</h2>
+        <form method="POST">
+            <div class="mb-4">
+                <div class="label mb-2">Username</div>
+                <input type="text" class="form-control" name="username" required>
+            </div>
+            <div class="mb-1">
+                <div class="label mb-2">Password</div>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <div class="mb-3">
+                <div class="label mb-2">Confirm Password</div>
+                <input type="password" class="form-control" name="password-confirm" required>
+            </div>
+            <button class="p-1 mb-3 rounded-3"formaction="/signup">Register</button>
+            <div class="label mb-1">Already have an account?</div>
+        </form>
+        <form>
+            <button class="p-1 rounded-3" formaction="/">Login Here</button>
+        </form>
+        <label class="text-danger error mt-2">{{status}}</label>
+    </div>
+    <p class="green-text">Look at all this grass that you've never touched.</p>
 </body>
-<h1> {{status}} </h1>

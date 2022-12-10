@@ -28,6 +28,8 @@ def make_account():
   #  return render_template('registration.html', status='Password is too short')
 
   #new entry
+  if (request.form.get('password') != request.form.get('password-confirm')):
+    return render_template('registration.html', status='The password you typed is not the same as your confirmation')
   create_user(request.form.get('username'), request.form.get('password'))
   session['username'] = request.form['username']
   #return render_template("profile.html")
@@ -42,6 +44,11 @@ def authenticate():
   #return render_template('profile.html')
   session['username'] = request.form['username']
   return redirect('/profile')
+
+@app.route('/logout')
+def logout():
+  session.pop('username')
+  return redirect('/')
 
 #prof page
 @app.route('/profile', methods=['GET'])

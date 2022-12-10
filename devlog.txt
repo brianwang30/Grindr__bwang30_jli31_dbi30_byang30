@@ -84,6 +84,11 @@ Donald Bi -- 2022-12-9 22:10
 --------------------------------------------------------------
 Finished profile navbar, looks hot now; started working on different game sections.
 
+==============================================================
 Brian (Paul) Yang -- 2022-12-10 13:11
 --------------------------------------------------------------
 Created function to update grass count based on a user's league username/levels (half tested D:)
+
+Donald Bi -- 2022-12-10 14:16
+--------------------------------------------------------------
+Finished styling registration page and added confirm password place, also added logging out and styled profile a bit

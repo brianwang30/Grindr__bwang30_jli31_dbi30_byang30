@@ -17,12 +17,21 @@
 <body>
   <nav>
     <div class="nav-links">
-      <a href="#" class="home">Home</a>
-      <ul class="nav-quizzes">
-        <li class="quiz-link">
+      <ul class="nav-side">
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <form>
+            <button class='logout' formaction="/logout">Logout</button>
+          </form>
+        </li>
+      </ul>
+      <ul class="nav-side">
+        <li>
           <a href="#">Pokemon Quiz</a>
         </li>
-        <li class="quiz-link">
+        <li>
           <a href="#">Anime Quiz</a>
         </li>
       </ul>
@@ -36,12 +45,12 @@
 
   <form method="POST" class="sections">
     <div class="section intro">
-      <p>
+      <p class="green-text">
         Hey you, yea you. You see all this grass in the background? Well that's infinitely more grass than what <em>YOU</em> touch.
         <br>
-        Our little Grass o'Meter at the top uses top-notch algorithm processes to calculate how much grass you touch.
+        Our Grass o'Meter at the top uses top-notch algorithm processes to calculate how much grass you touch.
         <br>
-        Ahem, probably negative.
+        Ahem, probably <span class="red-text"><em>NEGATIVE</em></span>.
         <br>
         Well, have fun.
       </p>
