@@ -48,15 +48,15 @@ def find_summoner_level(user):
         with open("keys/RiotAPI.txt", "r") as file:
             api_key = file.read().strip()
             token = api_key
+            url = f"https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{user}"
+            data = json.loads(requests.get(url, headers = {"X-Riot-Token" : token}).text)
     except:
         print("No API key provided.")
 
-    url = f"https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{user}"
-    data = json.loads(requests.get(url, headers = {"X-Riot-Token" : token}).text)
 
     return data["summonerLevel"]
 
 def find_summoner_mastery():
     #degeneracy?
-    #need summoner id too hard to find for now 
+    #need summoner id too hard to find for now
     return None

@@ -83,3 +83,7 @@ Changed some styling for the login page, started work on the profile navbar.
 Donald Bi -- 2022-12-9 22:10
 --------------------------------------------------------------
 Finished profile navbar, looks hot now; started working on different game sections.
+
+Brian (Paul) Yang -- 2022-12-10 13:11
+--------------------------------------------------------------
+Created function to update grass count based on a user's league username/levels (half tested D:)
