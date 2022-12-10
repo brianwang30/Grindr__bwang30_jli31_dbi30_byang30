@@ -1,13 +1,13 @@
-
 body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
+    height: 1000px;
+    overflow-x: hidden;
 }
 
 body.index {
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/65f182da-360f-4dc8-879f-23b89a229256/d9e3bfi-3bc50ca3-74bd-4cc6-a1b6-b7f842457d06.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzY1ZjE4MmRhLTM2MGYtNGRjOC04NzlmLTIzYjg5YTIyOTI1NlwvZDllM2JmaS0zYmM1MGNhMy03NGJkLTRjYzYtYTFiNi1iN2Y4NDI0NTdkMDYucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BGhS6rTd1eE1QjGjwpR6-csETJq83bRqwNvYSTiUnRA");
     background-size: cover;
+    display: flex;
+    justify-content: center;
 }
 
 .start-form {
@@ -31,4 +31,175 @@ button {
 button:hover {
     background-color: rgb(111, 230, 111);
     color: white;
+}
+
+/*---------- navbar css ----------*/
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 25px;
+    transition: 0.5s;
+}
+
+.nav-quizzes {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 600;
+    color:hsl(120, 71%, 82%);
+    text-shadow: 0px 0px 2px white;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    color:hsl(120, 71%, 62%);
+}
+
+/* sticky navbar stuff :) */
+nav.sticky .nav-links {
+    background-color: rgba(255, 255, 255, 0.349);
+}
+
+nav.sticky a {
+    font-size: 20px;
+    color: hsl(192, 78%, 72%);
+    text-shadow: 0px 0px 2px white;
+}
+
+nav.sticky a:hover {
+    color: hsl(192, 78%, 52%);
+}
+
+nav.sticky .grass-meter .title {
+    width: 0;
+    padding: 0;
+    font-size: 0;
+}
+
+nav.sticky .grass-meter .value {
+    margin-top: -15px;
+    height: 50px;
+    border-radius: 15px;
+}
+
+/* end of sticky navbar */
+
+
+.grass-meter {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: -50px;  
+}
+
+.grass-meter .value {
+    color: red;
+    font-weight: 600;
+    font-size: 22px;
+    text-shadow: 1px 1px 3px rgb(145, 55, 55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(169, 251, 169);
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    box-shadow: 2px 2px 10px 1px rgb(95, 179, 95);
+    z-index: 99;
+    transition: 0.2s;
+}
+
+.grass-meter .value:hover {
+    transform: scale(1.1);
+}
+
+.grass-meter .title {
+    background-color: hsl(120, 71%, 82%);
+    padding: 10px 20px;
+    margin-right: -25px;
+    margin-left: -25px;
+    box-shadow: 2px 2px 10px 1px rgb(54, 123, 54);
+    font-weight: 600;
+    font-size: 20px;
+    color:rgb(73, 73, 73);
+    text-shadow: 1px 1px 3px rgb(165, 165, 165);
+    transition: 0.2s;
+}
+
+.left {
+    border-radius: 15px 0px 0px 15px;
+}
+
+.right {
+    border-radius: 0px 15px 15px 0px;
+}
+
+/*---------- end of navbar css ----------*/
+
+/*---------- game sections css ----------*/
+.sections {
+    display: flex;
+    flex-direction: column;
+}
+
+.section {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-color: gray;
+    background-blend-mode: multiply;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro {
+    background-image: url("https://images4.alphacoders.com/733/733572.png");
+    color: rgb(169, 251, 169)
+}
+
+.league {
+    background-image: url("https://images8.alphacoders.com/107/thumb-1920-1076527.jpg");
+}
+
+.game-user-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    width: 25vw;
+    background-color: rgb(235, 238, 202);
+    padding: 20px;
+    border-radius: 20px;;
+    box-shadow: 0px 0px 8px 6px rgb(235, 238, 202);
+}
+
+.game-user-inputs label {
+    font-size: 18px;
+    text-align: center;
+    color: rgb(5, 75, 137);
 }

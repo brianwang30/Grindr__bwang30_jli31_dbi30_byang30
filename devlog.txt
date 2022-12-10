@@ -75,3 +75,11 @@ Added some function for db
 Brian (Beedub) Wang -- 2022-12-9 14:01
 --------------------------------------------------------------
 Begun grass calc quiz process
+
+Donald Bi -- 2022-12-9 14:03
+--------------------------------------------------------------
+Changed some styling for the login page, started work on the profile navbar.
+
+Donald Bi -- 2022-12-9 22:10
+--------------------------------------------------------------
+Finished profile navbar, looks hot now; started working on different game sections.
