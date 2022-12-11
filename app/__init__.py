@@ -62,8 +62,9 @@ def profile():
 #pokemon quiz page
 @app.route('/pokequiz', methods=['GET'])
 def pokequiz():
-  q = new_quiz()
-  a1 = random.choice(q['wrong'])
+  #THESE ARE BROKEN RN
+  #q = new_quiz()
+  #a1 = random.choice(q['wrong'])
   a2 = ""
   a3 = ""
   a4 = ""
