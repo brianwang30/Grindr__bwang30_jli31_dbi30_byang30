@@ -23,7 +23,7 @@ def db_connect():
 
 def db_close():
     db.commit()
-    db.close()
+    #db.close()
 
 def create_user(username, password):
     c = db_connect()
@@ -79,7 +79,7 @@ def ID_exist(id):
 
 def get_grass(id):
     c = db_connect()
-    if ID_exist():
+    if ID_exist(id):
         c.execute('SELECT Grass FROM grassmeter WHERE id =?', (id,))
         text = c.fetchone()
         db_close()
@@ -89,7 +89,7 @@ def get_grass(id):
 def update_grass(id, grass):
     c = db_connect()
     old = get_grass(id)
-    if ID_exist:
+    if ID_exist(id):
         c.execute('UPDATE grassmeter SET grass =? WHERE id=?', (old + grass, id))
         db_close()
     return False

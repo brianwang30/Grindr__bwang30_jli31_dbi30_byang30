@@ -63,13 +63,33 @@ def profile():
 @app.route('/pokequiz', methods=['GET'])
 def pokequiz():
   #THESE ARE BROKEN RN
-  #q = new_quiz()
-  #a1 = random.choice(q['wrong'])
-  a2 = ""
-  a3 = ""
-  a4 = ""
-  #answer choices
-  return render_template('pokequiz.html')
+  q = new_quiz()
+  #return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3])
+  return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
+
+@app.route('/pokecorrect')
+def pokecorrect():
+  #code to change grass count
+  id = get_userID(session['username'])
+  update_grass(id, get_grass(id) - 250)
+
+  q = new_quiz()
+  print("correct")
+  #replace with random render_template version
+  return render_template('pokequiz.html', status = "correct!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
+
+@app.route('/pokeincorrect')
+def pokeincorrect():
+  #code to change grass count
+  id = get_userID(session['username'])
+  update_grass(id, get_grass(id) + 100)
+
+  q = new_quiz()
+  print("incorrect")
+  #replace with random render_template version
+  return render_template('pokequiz.html', status = "wrong!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
+
+
 
 if __name__ == '__main__':
   app.debug = True

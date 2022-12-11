@@ -21,6 +21,7 @@ def random_poke():
     except:
         None
     info["type"] = [type1, type2]
+    return info
 
 def random_anime():
     info = {}
