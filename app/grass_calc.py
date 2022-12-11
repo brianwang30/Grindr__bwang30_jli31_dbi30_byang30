@@ -1,6 +1,7 @@
 from api import *
 import db
 import sqlite3
+import random
 
 DB_FILE = "database.db"
 
@@ -10,26 +11,24 @@ DB_FILE = "database.db"
 
 #makes a new question
 #returns the image, then the answer choices, along with the correct answer choice
-def new_quiz(userid):
+def new_quiz():
     #random choice between pokemon or anime
     if random.randint(0, 1) > 0:
         #pokemon q
         right = random_poke()
+        ans = []
         #prevent the right ansewr being picked again
-        wrong1 = random_poke()
-        for wrong1['name'] in right:
-            wrong1 = random_poke()
-        wrong2 = random_poke()
-        for wrong2['name'] in right:
-            wrong2 = random_poke()
-        wrong3 = random_poke()
-        for wrong3['name'] in right:
-            wrong3 = random_poke()
+        for i in range(3):
+            wrong = random_poke()
+            for wrong['name'] in ans:
+                wrong = random_poke()
+            ans.append(wrong['name'])
+
 
         ret = {}
         ret['img'] = right['sprite']
         ret['right'] = right['name']
-        ret['wrong'] = [wrong1['name'], wrong2['name'], wrong3['name']]
+        ret['ans'] = [wrong1['name'], wrong2['name'], wrong3['name']]
         return ret
 
     else:
@@ -48,8 +47,10 @@ def new_quiz(userid):
         ret = {}
         ret['img'] = right['image']
         ret['right'] = right['name']
-        ret['wrong'] = [wrong1['name'], wrong2['name'], wrong3['name']]
+        ret['ans'] = [wrong1['name'], wrong2['name'], wrong3['name']]
         return ret
+
+
 
 
 def db_connect():

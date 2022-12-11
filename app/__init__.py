@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session, request, redirect
 import sqlite3
 from db import *
+from grass_calc import *
 #future import methods
 
 app = Flask(__name__)
@@ -56,6 +57,16 @@ def profile():
   if not session:
     return redirect('/')
   return render_template('profile.html')
+
+#quiz page
+@app.route('/quiz', methods=['GET'])
+def quiz():
+  q = new_quiz()
+  a1 = random.choice(q['wrong'])
+  a2 = ""
+  a3 = ""
+  a4 = ""
+  #answer choices
 
 
 if __name__ == '__main__':
