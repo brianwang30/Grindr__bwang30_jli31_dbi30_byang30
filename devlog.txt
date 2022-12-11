@@ -92,3 +92,8 @@ Created function to update grass count based on a user's league username/levels 
 Donald Bi -- 2022-12-10 14:16
 --------------------------------------------------------------
 Finished styling registration page and added confirm password place, also added logging out and styled profile a bit
+
+==============================================================
+Donald Bi -- 2022-12-11 15:30
+--------------------------------------------------------------
+Did most of pokequiz page, addded the javascript necessary to make multiple choice function correctly (and it looks sexy)

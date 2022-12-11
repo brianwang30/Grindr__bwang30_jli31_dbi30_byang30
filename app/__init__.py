@@ -45,6 +45,7 @@ def authenticate():
   session['username'] = request.form['username']
   return redirect('/profile')
 
+#logout
 @app.route('/logout')
 def logout():
   session.pop('username')
@@ -56,6 +57,11 @@ def profile():
   if not session:
     return redirect('/')
   return render_template('profile.html')
+
+#pokemon quiz page
+@app.route('/pokequiz', methods=['GET'])
+def pokequiz():
+  return render_template('pokequiz.html')
 
 
 if __name__ == '__main__':

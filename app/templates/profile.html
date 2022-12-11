@@ -16,26 +16,24 @@
 </head>
 <body>
   <nav>
-    <div class="nav-links">
+    <form class="nav-links">
       <ul class="nav-side">
         <li>
           <a href="#">Home</a>
         </li>
         <li>
-          <form>
-            <button class='logout' formaction="/logout">Logout</button>
-          </form>
+          <button class='nav-button' formaction="/logout">Logout</button>
         </li>
       </ul>
       <ul class="nav-side">
         <li>
-          <a href="#">Pokemon Quiz</a>
+          <button class='nav-button' formaction="/pokequiz">Pokemon Quiz</button>
         </li>
         <li>
-          <a href="#">Anime Quiz</a>
+          <button class='nav-button' formaction="/aniquiz">Anime Quiz</button>
         </li>
       </ul>
-    </div>
+    </form>
     <div class="grass-meter">
       <div class="title left">Grass</div>
       <div class="value">-5000</div>
