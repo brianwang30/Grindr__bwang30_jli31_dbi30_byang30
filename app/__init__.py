@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session, request, redirect
 import sqlite3
 from db import *
+from grass_calc import *
 #future import methods
 
 app = Flask(__name__)
@@ -61,8 +62,13 @@ def profile():
 #pokemon quiz page
 @app.route('/pokequiz', methods=['GET'])
 def pokequiz():
+  q = new_quiz()
+  a1 = random.choice(q['wrong'])
+  a2 = ""
+  a3 = ""
+  a4 = ""
+  #answer choices
   return render_template('pokequiz.html')
-
 
 if __name__ == '__main__':
   app.debug = True
