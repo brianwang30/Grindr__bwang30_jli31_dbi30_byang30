@@ -8,13 +8,13 @@ c = db.cursor()
 # Login information
 c.execute("CREATE TABLE if not Exists users(ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, Did_Questions BOOLEAN);")
 # Insult database
-c.execute("CREATE TABLE if not Exists insult(Insult_ID INTEGER PRIMARY KEY AUTOINCREMENT, Insult_Text TEXT, Grass_Level INTEGER, API_INFO TEXT);")
-# Grass meter
+c.execute("CREATE TABLE if not Exists insult(ID INTEGER PRIMARY KEY AUTOINCREMENT, Insult_Text TEXT, Grass_Level INTEGER, API_INFO TEXT);")
+# Grassmeter
 c.execute("CREATE TABLE if not Exists grassmeter(ID INTEGER PRIMARY KEY AUTOINCREMENT, Quiz_Grass INTEGER, Grass INTEGER);")
 # Game accounts
 c.execute("CREATE TABLE if not Exists game(ID INTEGER PRIMARY KEY AUTOINCREMENT, Game TEXT, Game_Username);")
 db.commit()
-db.close()
+c.close()
 
 def db_connect():
     global db
@@ -23,11 +23,12 @@ def db_connect():
 
 def db_close():
     db.commit()
-    #db.close()
+    c.close()
 
 def create_user(username, password):
     c = db_connect()
-    c.execute('INSERT INTO users(username, password) VALUES (?, ?);', (username, password))
+    c.execute('INSERT INTO users(username, password, Did_Questions) VALUES (?, ?, ?);', (username, password, False))
+    c.execute('INSERT INTO grassmeter(Quiz_Grass, Grass) VALUES (?, ?);', (1, 2))
     db_close()
 
 def user_exist(username):
@@ -39,7 +40,6 @@ def user_exist(username):
         return False
     else:
         return True
-
 
 def verify(username, password):
     c = db_connect()
@@ -56,41 +56,38 @@ def get_insult(grass_level):
     c.execute('SELECT Insult_Text FROM insult WHERE Grass_Level =?;' ,(grass_level,))
     text = c.fetchone()
     db_close()
-    return text[1] 
-        
+    return text[1]
+
+def ID_exist(id):
+    c = db_connect()
+    c.execute('SELECT ID FROM users WHERE ID =?;', (id,))
+    text = c.fetchone()
+    db_close()
+    if id is None:
+        return False
+    return True
+
 def get_userID(username):
     c = db_connect()
     if not user_exist(username):
-        return False
+        return None
     c.execute('SELECT ID FROM users WHERE username =?;', (username,))
     text = c.fetchone()
     db_close()
     return text[0]
 
-def ID_exist(id):
-    c = db_connect()
-    c.execute('SELECT ID FROM users WHERE id =?;', (id,))
-    text = c.fetchone()
-    db_close()
-
-    if id is None:
-        return False
-    return True
-
 def get_grass(id):
     c = db_connect()
     if ID_exist(id):
-        c.execute('SELECT Grass FROM grassmeter WHERE id =?', (id,))
+        c.execute('SELECT * FROM grassmeter WHERE ID=?;', (id,))
         text = c.fetchone()
         db_close()
         return text[2]
-    return False
+    return "User doesn't exists"
 
 def update_grass(id, grass):
-    c = db_connect()
     old = get_grass(id)
-    if ID_exist(id):
-        c.execute('UPDATE grassmeter SET grass =? WHERE id=?', (old + grass, id))
-        db_close()
-    return False
-    
+    c = db_connect()
+    c.execute('UPDATE grassmeter SET Grass =? WHERE ID=?;', (old + grass, id))
+    db_close()
+    return None

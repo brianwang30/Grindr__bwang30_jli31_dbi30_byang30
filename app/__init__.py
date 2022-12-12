@@ -1,7 +1,7 @@
 from flask import Flask, render_template, session, request, redirect
 import sqlite3
 from db import *
-from grass_calc import *
+# from grass_calc import *
 #future import methods
 
 app = Flask(__name__)
@@ -39,7 +39,7 @@ def make_account():
 @app.route('/auth', methods=['GET', 'POST'])
 def authenticate():
   # Method to check if login in DB
-  
+
   if not verify(request.form.get('username'), request.form.get('password')):
     return render_template('index.html', status='Incorrect login info')
   #return render_template('profile.html')
