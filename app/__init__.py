@@ -64,9 +64,10 @@ def profile():
 @app.route('/pokequiz', methods=['GET'])
 def pokequiz():
   #THESE ARE BROKEN RN
-  q = new_quiz()
+ # q = new_quiz()
+  return render_template('pokequiz.html')
   #return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3])
-  return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
+  #return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
 
 @app.route('/pokecorrect')
 def pokecorrect():
