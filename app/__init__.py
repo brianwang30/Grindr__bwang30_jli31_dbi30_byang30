@@ -1,12 +1,13 @@
 from flask import Flask, render_template, session, request, redirect
 import sqlite3
+import os
 from db import *
 # from grass_calc import *
 #future import methods
 
 app = Flask(__name__)
 
-app.secret_key = "HI" # dummy key CHANGE LATER
+app.secret_key = os.urandom(32)
 
 #login page is landing page
 @app.route('/', methods=['GET'])
