@@ -23,7 +23,7 @@ def db_connect():
 
 def db_close():
     db.commit()
-    c.close()
+    db.close()
 
 def create_user(username, password):
     c = db_connect()
