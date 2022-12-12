@@ -18,7 +18,7 @@ def new_quiz():
         right = random_poke()
         ans = []
         #prevent the right ansewr being picked again
-        #ans.append(right['name'])
+        ans.append(right['name'])
         for i in range(3):
             wrong = random_poke()
             while wrong['name'] in ans or wrong['name'] in right:

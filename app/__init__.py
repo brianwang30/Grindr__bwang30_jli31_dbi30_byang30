@@ -2,7 +2,8 @@ from flask import Flask, render_template, session, request, redirect
 import sqlite3
 import os
 from db import *
-import api
+from grass_calc import * 
+from api import *
 # from grass_calc import *
 #future import methods
 
@@ -65,9 +66,9 @@ def profile():
 @app.route('/pokequiz', methods=['GET'])
 def pokequiz():
   #THESE ARE BROKEN RN
- # q = new_quiz()
-  return render_template('pokequiz.html')
-  #return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3])
+  q = new_quiz()
+  #return render_template('pokequiz.html')
+  return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3])
   #return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
 
 @app.route('/pokecorrect')
@@ -79,7 +80,7 @@ def pokecorrect():
   q = new_quiz()
   print("correct")
   #replace with random render_template version
-  return render_template('pokequiz.html', status = "correct!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
+  return render_template('pokequiz.html', status = "correct!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3])
 
 @app.route('/pokeincorrect')
 def pokeincorrect():
@@ -90,7 +91,7 @@ def pokeincorrect():
   q = new_quiz()
   print("incorrect")
   #replace with random render_template version
-  return render_template('pokequiz.html', status = "wrong!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
+  return render_template('pokequiz.html', status = "wrong!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3])
 
 @app.route('/animequiz', methods=['GET'])
 def animequiz():
