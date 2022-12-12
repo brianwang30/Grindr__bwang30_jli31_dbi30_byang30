@@ -102,3 +102,8 @@ Did most of pokequiz page, addded the javascript necessary to make multiple choi
 Jian Hong Li -- 2022-12-11 21:48
 --------------------------------------------------------------
 Fixed database stuff
+
+==============================================================
+Brian Wang -- 2022-12-12 14:00
+--------------------------------------------------------------
+(Struggled with MAL)
