@@ -2,8 +2,8 @@ from flask import Flask, render_template, session, request, redirect
 import sqlite3
 import os
 from db import *
-from grass_calc import * 
-from api import *
+from grass_calc import *
+import api
 # from grass_calc import *
 #future import methods
 
@@ -96,7 +96,11 @@ def pokeincorrect():
 @app.route('/animequiz', methods=['GET'])
 def animequiz():
     animes = api.random_anime()
-    return render_template('animequiz.html', correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0])
+
+    if len(animes) == 0:
+        return render_template('animequiz.html', status = 'No/Wrong API key')
+    else:
+        return render_template('animequiz.html', correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0])
 
 @app.route("/animecorrect")
 def animecorrect():

@@ -33,26 +33,24 @@ def random_anime():
         random_anime_ranks.append(random.randrange(500))
 
     url = "https://api.myanimelist.net/v2/anime/ranking?ranking_type=all&limit=500" # Taking the top ranking anime and selecting a random one (500 is max)
-
+    data = ""
     client_id = "" #Pulling api key
     try: #check for if text file for key exist
         with open("keys/MAL_key.txt", "r") as file:
             api_key = file.read().strip()
             client_id = api_key
+            data = json.loads(requests.get(url, headers={"X-MAL-CLIENT-ID": client_id}).text)
+
+            choice_number = 0
+            for i in random_anime_ranks:
+                anime_data = data["data"][i]
+                info[f"anime{choice_number}"] = []
+                #Name
+                info[f'anime{choice_number}'].append(anime_data["node"]["title"])
+                info[f'anime{choice_number}'].append(anime_data["node"]["main_picture"]["large"])
+                choice_number += 1
     except:
         print("No API key provided.")
-
-    data = json.loads(requests.get(url, headers={"X-MAL-CLIENT-ID": client_id}).text)
-
-    choice_number = 0
-    for i in random_anime_ranks:
-        anime_data = data["data"][i]
-        info[f"anime{choice_number}"] = []
-        #Name
-        info[f'anime{choice_number}'].append(anime_data["node"]["title"])
-        info[f'anime{choice_number}'].append(anime_data["node"]["main_picture"]["large"])
-        choice_number += 1
-
     return info
 
 def find_summoner_level(user):
