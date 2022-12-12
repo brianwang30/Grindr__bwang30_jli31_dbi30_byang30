@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, request, redirect
 import sqlite3
 import os
 from db import *
+import api
 # from grass_calc import *
 #future import methods
 
@@ -91,7 +92,10 @@ def pokeincorrect():
   #replace with random render_template version
   return render_template('pokequiz.html', status = "wrong!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
 
-
+@app.route('/animequiz', methods=['GET'])
+def animequiz():
+    animes = api.random_anime()
+    return render_template('animequiz.html', correct = animes.get("anime0")[0], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime2")[0])
 
 if __name__ == '__main__':
   app.debug = True
