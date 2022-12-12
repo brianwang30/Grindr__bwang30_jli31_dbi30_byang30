@@ -95,7 +95,7 @@ def pokeincorrect():
 @app.route('/animequiz', methods=['GET'])
 def animequiz():
     animes = api.random_anime()
-    return render_template('animequiz.html', correct = animes.get("anime0")[0], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime2")[0])
+    return render_template('animequiz.html', correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0])
 
 if __name__ == '__main__':
   app.debug = True
