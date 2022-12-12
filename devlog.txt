@@ -97,3 +97,8 @@ Finished styling registration page and added confirm password place, also added 
 Donald Bi -- 2022-12-11 15:30
 --------------------------------------------------------------
 Did most of pokequiz page, addded the javascript necessary to make multiple choice function correctly (and it looks sexy)
+
+==============================================================
+Jian Hong Li -- 2022-12-11 21:48
+--------------------------------------------------------------
+Fixed database stuff
