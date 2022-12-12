@@ -31,7 +31,7 @@ def new_quiz():
         ret['right'] = right['name']
         ret['ans'] = ans
         return ret
-        
+
 ''' #MEGA DEFUNCT CODE NEED TO RE COPY PASTE FROM POKEMON
     else:
         #anime q
@@ -52,23 +52,10 @@ def new_quiz():
         return ret
 '''
 
+#Anime quiz
 
 
-def db_connect():
-    global db
-    db = sqlite3.connect(DB_FILE)
-    return db.cursor()
-
-def ID_exist(id):
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-    c.execute('SELECT ID FROM game WHERE id =?;', (id,))
-    text = c.fetchone()
-
-    if id is None:
-        return False
-    return True
-
+#changes your grass based on league level
 def league_grass(id):
     username = ""
     if db.ID_exist(id):

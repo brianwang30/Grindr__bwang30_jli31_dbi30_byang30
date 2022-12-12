@@ -29,13 +29,13 @@ def create_user(username, password):
     c = db_connect()
     c.execute('INSERT INTO users(username, password, Did_Questions) VALUES (?, ?, ?);', (username, password, False))
     c.execute('INSERT INTO grassmeter(Quiz_Grass, Grass) VALUES (?, ?);', (1, 2))
-    db_close()
+    #db_close() Dont know what exactly the problem is but dont uncomment this for signup to work
 
 def user_exist(username):
     c = db_connect()
     c.execute('SELECT username FROM users WHERE username = ?;', (username,))
     check = c.fetchone()
-    db_close()
+    #db_close() Dont know what exactly the problem is but dont uncomment this for signup to work
     if check is None:
         return False
     else:
@@ -62,7 +62,7 @@ def ID_exist(id):
     c = db_connect()
     c.execute('SELECT ID FROM users WHERE ID =?;', (id,))
     text = c.fetchone()
-    db_close()
+    #db_close() Dont know what exactly the problem is but dont uncomment this for signup to work
     if id is None:
         return False
     return True

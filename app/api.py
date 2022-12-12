@@ -1,6 +1,9 @@
 import requests
 import json
+import pprint
 import random
+
+pp = pprint.PrettyPrinter(indent=4)
 
 #PokeApi Dict Lists name/sprite link/type(s)
 def random_poke():
@@ -25,7 +28,10 @@ def random_poke():
 
 def random_anime():
     info = {}
-    rand_index = random.randrange(500)
+    random_anime_ranks = []
+    for i in range(4):
+        random_anime_ranks.append(random.randrange(500))
+
     url = "https://api.myanimelist.net/v2/anime/ranking?ranking_type=all&limit=500" # Taking the top ranking anime and selecting a random one (500 is max)
 
     client_id = "" #Pulling api key
@@ -38,11 +44,16 @@ def random_anime():
 
     data = json.loads(requests.get(url, headers={"X-MAL-CLIENT-ID": client_id}).text)
 
-    anime_data = data["data"][rand_index]
-    #Name
-    info["name"] = anime_data["node"]["title"]
-    #Image
-    info["image"] = anime_data["node"]["main_picture"]["large"]
+    choice_number = 0
+    for i in random_anime_ranks:
+        anime_data = data["data"][i]
+        info[f"anime{choice_number}"] = []
+        #Name
+        info[f'anime{choice_number}'].append(anime_data["node"]["title"])
+        info[f'anime{choice_number}'].append(anime_data["node"]["main_picture"]["large"])
+        choice_number += 1
+
+    return info
 
 def find_summoner_level(user):
     try: #check for if text file for key exist
@@ -61,3 +72,5 @@ def find_summoner_mastery():
     #degeneracy?
     #need summoner id too hard to find for now
     return None
+
+random_anime()
