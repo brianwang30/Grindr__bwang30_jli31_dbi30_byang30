@@ -97,7 +97,7 @@ def pokeincorrect():
 def animequiz():
     animes = api.random_anime()
 
-    if len(animes) == 0:
+    if len(animes) == 0: #len 0 dictionary is printed when API key is wrong or not provided
         return render_template('animequiz.html', status = 'No/Wrong API key')
     else:
         return render_template('animequiz.html', correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0])

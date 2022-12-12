@@ -41,12 +41,14 @@ def random_anime():
             client_id = api_key
             data = json.loads(requests.get(url, headers={"X-MAL-CLIENT-ID": client_id}).text)
 
+            #Thowing this into try statement bc i dont know a better way data can be empty if the api key is wrong but there wasntg any check so It would crash the program
             choice_number = 0
             for i in random_anime_ranks:
                 anime_data = data["data"][i]
                 info[f"anime{choice_number}"] = []
                 #Name
                 info[f'anime{choice_number}'].append(anime_data["node"]["title"])
+                #Picture
                 info[f'anime{choice_number}'].append(anime_data["node"]["main_picture"]["large"])
                 choice_number += 1
     except:
@@ -65,10 +67,3 @@ def find_summoner_level(user):
 
 
     return data["summonerLevel"]
-
-def find_summoner_mastery():
-    #degeneracy?
-    #need summoner id too hard to find for now
-    return None
-
-random_anime()
