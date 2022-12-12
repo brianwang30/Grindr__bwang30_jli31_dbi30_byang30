@@ -51,9 +51,9 @@
                 answers.forEach(a => a.classList.remove('chosen'))
                 this.classList.add('chosen');
                 if (this.classList.contains('correct')) {
-                    submit.formAction = '/pokecorrect';
+                    submit.formAction = '/anicorrect';
                 } else {
-                    submit.formAction = '/pokeincorrect';
+                    submit.formAction = '/aniincorrect';
                 }
                 answer.classList.add('pressed');
             })

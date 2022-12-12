@@ -92,10 +92,18 @@ def pokeincorrect():
   #replace with random render_template version
   return render_template('pokequiz.html', status = "wrong!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
 
-@app.route('/animequiz', methods=['GET'])
+@app.route('/aniquiz', methods=['GET'])
 def animequiz():
     animes = api.random_anime()
     return render_template('animequiz.html', correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0])
+
+@app.route("/anicorrect")
+def animecorrect():
+#    id = get_userID(session['username'])
+#    update_grass(id, get_grass(id) - 250) doesnt work for now
+    animes = api.random_anime()
+
+    return render_template('animequiz.html', status = "correct!", correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0])
 
 if __name__ == '__main__':
   app.debug = True
