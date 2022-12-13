@@ -55,6 +55,8 @@ def random_anime():
         print("No API key provided.")
     return info
 
+pp.pprint(random_anime())
+
 def find_summoner_level(user):
     try: #check for if text file for key exist
         with open("keys/RiotAPI.txt", "r") as file:

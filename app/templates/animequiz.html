@@ -33,13 +33,12 @@
             <div class="title right">o' Meter</div>
         </div>
     </nav>
-    <img src= {{img}} class="center-block" alt="Responsive image">
-    <h1>{{status}}</h1>
+    <img src= {{correct_img}} class="center-block" alt="Responsive image">
     <form class="answer-choice-form">
-        <div class="answer-choice correct">{{correct}}</div>
-        <div class="answer-choice incorrect">{{a0}}</div>
-        <div class="answer-choice incorrect">{{a1}}</div>
-        <div class="answer-choice incorrect">{{a2}}</div>
+        <div class="answer-choice {{choices_status[0]}}">{{choices[0]}}</div>
+        <div class="answer-choice {{choices_status[1]}}">{{choices[1]}}</div>
+        <div class="answer-choice {{choices_status[2]}}">{{choices[2]}}</div>
+        <div class="answer-choice {{choices_status[3]}}">{{choices[3]}}</div>
         <button formaction="/yo" type="submit" class="submit">Submit Answer</button>
     </form>
 
