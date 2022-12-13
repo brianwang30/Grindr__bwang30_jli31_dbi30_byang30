@@ -15,7 +15,7 @@ app.secret_key = os.urandom(32)
 @app.route('/', methods=['GET'])
 def login():
   if 'username' in session:
-    return redirect('/profile') # go to displ homepage if has cookies
+      return redirect('/profile') # go to displ homepage if has cookies
   return render_template('index.html')
 
 @app.route('/register', methods=['GET'])
@@ -104,10 +104,9 @@ def animequiz():
 
 @app.route("/animecorrect")
 def animecorrect():
-#    id = get_userID(session['username'])
-#    update_grass(id, get_grass(id) - 250) doesnt work for now
+    id = get_userID(session["username"])
+    update_grass(id, get_grass(id) - 250) #function gets called nothing updates on the Grass o' meter
     animes = api.random_anime()
-
     return render_template('animequiz.html', status = "correct!", correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0])
 
 if __name__ == '__main__':
