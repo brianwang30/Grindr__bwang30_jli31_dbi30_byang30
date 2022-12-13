@@ -29,7 +29,7 @@ def create_user(username, password):
     c = db_connect()
     c.execute('INSERT INTO users(username, password, Did_Questions) VALUES (?, ?, ?);', (username, password, False))
     c.execute('INSERT INTO grassmeter(Quiz_Grass, Grass) VALUES (?, ?);', (0, 0))
-    c.execute('INSERT INTO game(Game, Game_Username) VALUES (?, ?);', ("LOL", ""))
+    c.execute('INSERT INTO game(Game, Game_Username) VALUES (?,?);', ("LOL", ""))
     db.commit()
     #db_close() Dont know what exactly the problem is but dont uncomment this for signup to work
 
@@ -96,6 +96,15 @@ def get_quiz_grass(id):
         return text[1]
     return "User doesn't exists"
 
+def get_gameuser(id):
+    c = db_connect()
+    if ID_exist(id):
+        c.execute('SELECT Game_Username FROM game WHERE ID =?', (id,))
+        text = c.fetchone()
+        db_close()
+        return text[0]
+    return "User doesn't exist"
+
 
 def update_account_grass(id, grass):
     c = db_connect()
@@ -106,7 +115,7 @@ def update_account_grass(id, grass):
 def update_quiz_grass(id, grass):
     old = get_quiz_grass(id)
     c = db_connect()
-    c.execute('UPDATE grassmeter SET Quiz_Grass =? WHERE ID=?;', (old + grass, id))
+    c.execute('UPDATE grassmeter SET Quiz_Grass =? WHERE ID=?;', (old + grass,))
     db_close()
     return None
 
@@ -116,4 +125,11 @@ def update_grass(id, grass):
     c = db_connect()
     c.execute('UPDATE grassmeter SET Grass =? WHERE ID=?;', (old + grass, id))
     db_close()
+    return None 
+
+def update_gameusername(id, game_username):
+    c = db_connect()
+    c.execute('UPDATE game SET Game_Username =? WHERE ID=?', (game_username,id))
+    db_close()
     return None
+
