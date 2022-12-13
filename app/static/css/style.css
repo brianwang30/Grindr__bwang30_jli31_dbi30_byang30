@@ -24,7 +24,7 @@ body.pokequiz {
 body.animequiz {
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://i.pinimg.com/originals/fd/d5/e4/fdd5e418094d8d41a10c0df3807f3a23.jpg");
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed;      
 }
 
 .green-text,
@@ -111,7 +111,8 @@ button.nav-button {
 }
 
 nav a:hover,
-button.nav-button:hover {
+button.nav-button:hover,
+button.nav-button.active {
     color:hsl(120, 71%, 62%);
 }
 
@@ -133,7 +134,8 @@ nav.sticky button.nav-button {
 }
 
 nav.sticky a:hover,
-nav.sticky button.nav-button:hover {
+nav.sticky button.nav-button:hover,
+nav.sticky button.nav-button.active {
     color: hsl(192, 78%, 52%);
 }
 

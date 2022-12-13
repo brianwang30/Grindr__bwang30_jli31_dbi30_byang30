@@ -20,10 +20,10 @@
             </ul>
             <ul class="nav-side">
             <li>
-                <button class='nav-button' formaction="/pokequiz">Pokemon Quiz</button>
+                <button class='nav-button' formaction="/pokequiz/none">Pokemon Quiz</button>
             </li>
             <li>
-                <button class='nav-button' formaction="/animequiz">Anime Quiz</button>
+                <button class='nav-button active' formaction="/animequiz">Anime Quiz</button>
             </li>
             </ul>
         </form>
@@ -33,8 +33,8 @@
             <div class="title right">o' Meter</div>
         </div>
     </nav>
-    <img src= {{correct_img}} class="center-block" alt="Responsive image">
     <form class="answer-choice-form">
+        <img src= {{correct_img}} class="center-block" alt="Responsive image">
         <div class="answer-choice {{choices_status[0]}}">{{choices[0]}}</div>
         <div class="answer-choice {{choices_status[1]}}">{{choices[1]}}</div>
         <div class="answer-choice {{choices_status[2]}}">{{choices[2]}}</div>
