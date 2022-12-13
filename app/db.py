@@ -115,7 +115,7 @@ def update_account_grass(id, grass):
 def update_quiz_grass(id, grass):
     old = get_quiz_grass(id)
     c = db_connect()
-    c.execute('UPDATE grassmeter SET Quiz_Grass =? WHERE ID=?;', (old + grass,))
+    c.execute('UPDATE grassmeter SET Quiz_Grass =? WHERE ID=?;', (old + grass, id))
     db_close()
     return None
 

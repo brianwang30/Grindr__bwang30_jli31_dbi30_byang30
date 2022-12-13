@@ -100,8 +100,8 @@ def pokeincorrect():
 
   return redirect('/pokequiz/wrong')
 
-@app.route('/animequiz', methods=['GET'])
-def animequiz():
+@app.route('/animequiz/<stat>', methods=['GET'])
+def animequiz(stat):
     animes = api.random_anime()
     id = get_userID(session['username'])
     
@@ -120,17 +120,29 @@ def animequiz():
 
 
       return render_template('animequiz.html', 
+      status = stat,
       choices = choices,
       correct_img = correct_img,
       choices_status = choices_status,
       grassometer = get_grass(id))
 
-@app.route("/animecorrect")
+@app.route('/animecorrect', methods = ['GET'])
 def animecorrect():
-    id = get_userID(session["username"])
-    update_grass(id, int("-250")) #function gets called nothing updates on the Grass o' meter
-    animes = api.random_anime()
-    return render_template('animequiz.html', status = "correct!", correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0], grassometer = get_grass(id))
+  #code to change grass count
+  id = get_userID(session['username'])
+  update_grass(id, int("-250"))
+
+  return redirect('/animequiz/correct')
+
+
+@app.route('/animeincorrect', methods = ['GET'])
+def animeincorrect():
+  #code to change grass count
+  id = get_userID(session['username'])
+  update_grass(id, int("+100"))
+
+  return redirect('/animequiz/wrong')
+
 
 if __name__ == '__main__':
   app.debug = True
