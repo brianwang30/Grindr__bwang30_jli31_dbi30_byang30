@@ -4,7 +4,7 @@ import os
 from db import *
 from grass_calc import *
 import api
-import pprint
+import pprint, random
 # from grass_calc import *
 #future import methods
 
@@ -87,8 +87,7 @@ def pokequiz():
 def pokecorrect():
   #code to change grass count
   id = get_userID(session['username'])
-  session['grass_change'] = -250
-  update_grass(id, session['grass_change'])
+  update_grass(id, int("-250"))
 
   q = new_quiz()
   choices = q['ans']
@@ -130,11 +129,26 @@ def pokeincorrect():
 def animequiz():
     animes = api.random_anime()
     id = get_userID(session['username'])
-
+    
+    
     if len(animes) == 0: #len 0 dictionary is printed when API key is wrong or not provided
-        return render_template('animequiz.html', status = 'No/Wrong API key')
+      return render_template('animequiz.html', status = 'No/Wrong API key')
     else:
-        return render_template('animequiz.html', correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0], grassometer = get_grass(id))
+      choices = []
+      for anime in animes.keys():
+        #appends anime names to choices
+        choices.append(animes[anime][0])
+      correct_index = random.randrange(0,4)
+      correct_img = animes[f'anime{correct_index}'][1] #gets the correct anime's image
+      choices_status = ['incorrect','incorrect','incorrect','incorrect']
+      choices_status[correct_index] = 'correct'
+
+
+      return render_template('animequiz.html', 
+      choices = choices,
+      correct_img = correct_img,
+      choices_status = choices_status,
+      grassometer = get_grass(id))
 
 @app.route("/animecorrect")
 def animecorrect():
