@@ -36,27 +36,8 @@ def new_quiz():
 
 pprint.pprint(new_quiz())
 
-''' #MEGA DEFUNCT CODE NEED TO RE COPY PASTE FROM POKEMON
-    else:
-        #anime q
-        right = random_anime()
-        ans = []
-        #prevent the right ansewr being picked again
-        for i in range(3):
-            wrong = random_anime()
-            for wrong['name'] in ans:
-                wrong = random_poke()
-            ans.append(wrong['name'])
-        ans.append(right['name'])
-        random.shuffle(ans)
-        ret = {}
-        ret['img'] = right['image']
-        ret['right'] = right['name']
-        ret['ans'] = ret
-        return ret
-'''
 
-#Anime quiz
+#Anime quiz already calls all choices from api, so no need for a method
 
 
 #changes your grass based on league level
