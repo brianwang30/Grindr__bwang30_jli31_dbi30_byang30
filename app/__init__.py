@@ -4,6 +4,7 @@ import os
 from db import *
 from grass_calc import *
 import api
+import pprint
 # from grass_calc import *
 #future import methods
 
@@ -68,32 +69,62 @@ def profile():
 def pokequiz():
   #THESE ARE BROKEN RN
   q = new_quiz()
+  choices = q['ans']
+  correct_img = q['img']
+  choices_status = ['incorrect','incorrect','incorrect','incorrect']
+  correct_index = choices.index(q['right'])
+  choices_status[correct_index] = 'correct'
   #return render_template('pokequiz.html')
   id = get_userID(session['username'])
-  return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3], grassometer = get_grass(id))
+  return render_template('pokequiz.html', 
+  choices = choices, 
+  correct_img = correct_img, 
+  choices_status = choices_status , 
+  grassometer = get_grass(id))
   #return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
 
 @app.route('/pokecorrect')
 def pokecorrect():
   #code to change grass count
   id = get_userID(session['username'])
-  update_grass(id, int("-250"))
+  session['grass_change'] = -250
+  update_grass(id, session['grass_change'])
 
   q = new_quiz()
-  print("correct")
+  choices = q['ans']
+  correct_img = q['img']
+  choices_status = ['incorrect','incorrect','incorrect','incorrect']
+  correct_index = choices.index(q['right'])
+  choices_status[correct_index] = 'correct'
+
   #replace with random render_template version
-  return render_template('pokequiz.html', status = "correct!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3], grassometer = get_grass(id))
+  return render_template('pokequiz.html', 
+  status = 'correct!',
+  choices = choices, 
+  correct_img = correct_img, 
+  choices_status = choices_status , 
+  grassometer = get_grass(id))
 
 @app.route('/pokeincorrect')
 def pokeincorrect():
   #code to change grass count
   id = get_userID(session['username'])
-  update_grass(id, 100)
+  update_grass(id, int("+100"))
 
   q = new_quiz()
-  print("incorrect")
+  choices = q['ans']
+  correct_img = q['img']
+  choices_status = ['incorrect','incorrect','incorrect','incorrect']
+  correct_index = choices.index(q['right'])
+  choices_status[correct_index] = 'correct'
+  
   #replace with random render_template version
-  return render_template('pokequiz.html', status = "wrong!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3], grassometer = get_grass(id))
+  return render_template('pokequiz.html', 
+  status = 'wrong!',
+  choices = choices, 
+  correct_img = correct_img, 
+  choices_status = choices_status , 
+  grassometer = get_grass(id))
 
 @app.route('/animequiz', methods=['GET'])
 def animequiz():

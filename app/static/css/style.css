@@ -18,11 +18,13 @@ body.register {
 body.pokequiz {
     background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url("https://wallpapercave.com/wp/uUZKv0v.jpg");
     background-size: cover;
+    background-attachment: fixed;
 }
 
 body.aniquiz {
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://i.pinimg.com/originals/fd/d5/e4/fdd5e418094d8d41a10c0df3807f3a23.jpg");
     background-size: cover;
+    margin-top: 200px;
 }
 
 .green-text,

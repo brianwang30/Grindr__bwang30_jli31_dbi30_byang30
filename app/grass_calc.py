@@ -2,6 +2,7 @@ from api import *
 import db
 import sqlite3
 import random
+import pprint
 
 DB_FILE = "database.db"
 
@@ -31,6 +32,9 @@ def new_quiz():
         ret['right'] = right['name']
         ret['ans'] = ans
         return ret
+
+
+pprint.pprint(new_quiz())
 
 ''' #MEGA DEFUNCT CODE NEED TO RE COPY PASTE FROM POKEMON
     else:
