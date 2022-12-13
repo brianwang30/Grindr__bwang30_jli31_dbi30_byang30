@@ -65,9 +65,8 @@ def profile():
   return render_template('profile.html', grassometer = get_grass(id))
 
 #pokemon quiz page
-@app.route('/pokequiz', methods=['GET'])
-def pokequiz():
-  #THESE ARE BROKEN RN
+@app.route('/pokequiz/<stat>', methods=['GET'])
+def pokequiz(stat):
   q = new_quiz()
   choices = q['ans']
   correct_img = q['img']
@@ -77,54 +76,30 @@ def pokequiz():
   #return render_template('pokequiz.html')
   id = get_userID(session['username'])
   return render_template('pokequiz.html', 
+  status = stat,
   choices = choices, 
   correct_img = correct_img, 
   choices_status = choices_status , 
   grassometer = get_grass(id))
   #return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
 
-@app.route('/pokecorrect')
+@app.route('/pokecorrect', methods = ['GET'])
 def pokecorrect():
   #code to change grass count
   id = get_userID(session['username'])
   session['grass_change'] = -250
   update_grass(id, session['grass_change'])
 
-  q = new_quiz()
-  choices = q['ans']
-  correct_img = q['img']
-  choices_status = ['incorrect','incorrect','incorrect','incorrect']
-  correct_index = choices.index(q['right'])
-  choices_status[correct_index] = 'correct'
+  return redirect('/pokequiz/correct')
 
-  #replace with random render_template version
-  return render_template('pokequiz.html', 
-  status = 'correct!',
-  choices = choices, 
-  correct_img = correct_img, 
-  choices_status = choices_status , 
-  grassometer = get_grass(id))
 
-@app.route('/pokeincorrect')
+@app.route('/pokeincorrect', methods = ['GET'])
 def pokeincorrect():
   #code to change grass count
   id = get_userID(session['username'])
   update_grass(id, int("+100"))
 
-  q = new_quiz()
-  choices = q['ans']
-  correct_img = q['img']
-  choices_status = ['incorrect','incorrect','incorrect','incorrect']
-  correct_index = choices.index(q['right'])
-  choices_status[correct_index] = 'correct'
-  
-  #replace with random render_template version
-  return render_template('pokequiz.html', 
-  status = 'wrong!',
-  choices = choices, 
-  correct_img = correct_img, 
-  choices_status = choices_status , 
-  grassometer = get_grass(id))
+  return redirect('/pokequiz/wrong')
 
 @app.route('/animequiz', methods=['GET'])
 def animequiz():
