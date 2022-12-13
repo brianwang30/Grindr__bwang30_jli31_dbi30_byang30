@@ -29,6 +29,7 @@ def create_user(username, password):
     c = db_connect()
     c.execute('INSERT INTO users(username, password, Did_Questions) VALUES (?, ?, ?);', (username, password, False))
     c.execute('INSERT INTO grassmeter(Quiz_Grass, Grass) VALUES (?, ?);', (0, 0))
+    c.execute('INSERT INTO game(Game, Game_Username) VALUES (?, ?);', ("LOL", ""))
     db.commit()
     #db_close() Dont know what exactly the problem is but dont uncomment this for signup to work
 

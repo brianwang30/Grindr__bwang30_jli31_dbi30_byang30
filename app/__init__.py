@@ -58,9 +58,10 @@ def logout():
 #prof page
 @app.route('/profile', methods=['GET'])
 def profile():
+  id = get_userID(session['username'])
   if not session:
     return redirect('/')
-  return render_template('profile.html')
+  return render_template('profile.html', grassometer = get_grass(id))
 
 #pokemon quiz page
 @app.route('/pokequiz', methods=['GET'])
@@ -68,46 +69,48 @@ def pokequiz():
   #THESE ARE BROKEN RN
   q = new_quiz()
   #return render_template('pokequiz.html')
-  return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3])
+  id = get_userID(session['username'])
+  return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3], grassometer = get_grass(id))
   #return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
 
 @app.route('/pokecorrect')
 def pokecorrect():
   #code to change grass count
   id = get_userID(session['username'])
-  update_grass(id, get_grass(id) - 250)
+  update_grass(id, int("-250"))
 
   q = new_quiz()
   print("correct")
   #replace with random render_template version
-  return render_template('pokequiz.html', status = "correct!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3])
+  return render_template('pokequiz.html', status = "correct!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3], grassometer = get_grass(id))
 
 @app.route('/pokeincorrect')
 def pokeincorrect():
   #code to change grass count
   id = get_userID(session['username'])
-  update_grass(id, get_grass(id) + 100)
+  update_grass(id, 100)
 
   q = new_quiz()
   print("incorrect")
   #replace with random render_template version
-  return render_template('pokequiz.html', status = "wrong!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3])
+  return render_template('pokequiz.html', status = "wrong!", img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2], a3 = q['ans'][3], grassometer = get_grass(id))
 
 @app.route('/animequiz', methods=['GET'])
 def animequiz():
     animes = api.random_anime()
+    id = get_userID(session['username'])
 
     if len(animes) == 0: #len 0 dictionary is printed when API key is wrong or not provided
         return render_template('animequiz.html', status = 'No/Wrong API key')
     else:
-        return render_template('animequiz.html', correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0])
+        return render_template('animequiz.html', correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0], grassometer = get_grass(id))
 
 @app.route("/animecorrect")
 def animecorrect():
     id = get_userID(session["username"])
-    update_grass(id, get_grass(id) - 250) #function gets called nothing updates on the Grass o' meter
+    update_grass(id, int("-250")) #function gets called nothing updates on the Grass o' meter
     animes = api.random_anime()
-    return render_template('animequiz.html', status = "correct!", correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0])
+    return render_template('animequiz.html', status = "correct!", correct = animes.get("anime0")[0], img = animes.get("anime0")[1], a0 = animes.get("anime1")[0], a1 = animes.get("anime2")[0], a2 = animes.get("anime3")[0], grassometer = get_grass(id))
 
 if __name__ == '__main__':
   app.debug = True
