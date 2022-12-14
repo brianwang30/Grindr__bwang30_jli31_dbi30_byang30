@@ -41,6 +41,8 @@ pprint.pprint(new_quiz())
 
 
 #changes your grass based on league level
+#Doesnt work bc find_summoner_info changed
+'''
 def league_grass(id):
     username = ""
     if db.ID_exist(id):
@@ -53,3 +55,4 @@ def league_grass(id):
         db.update_grass(id, current_grass)
         #these db.py functions calls are the sussiest things ever god help me
     db.db_close()
+'''

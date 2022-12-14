@@ -55,17 +55,30 @@ def random_anime():
         print("No API key provided.")
     return info
 
-pp.pprint(random_anime())
+#pp.pprint(random_anime()) Testing
 
-def find_summoner_level(user):
+def find_summoner_info(user):
     try: #check for if text file for key exist
         with open("keys/RiotAPI.txt", "r") as file:
             api_key = file.read().strip()
             token = api_key
             url = f"https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{user}"
             data = json.loads(requests.get(url, headers = {"X-Riot-Token" : token}).text)
+            url = f'https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{data["id"]}'
+            mastery_data = json.loads(requests.get(url, headers = {"X-Riot-Token" : token}).text)
     except:
         print("No API key provided.")
+    #Getting name of highest champion mastery bc riot api only gives champ id
+    #ids_to_name = requests.get("https://ddragon.leagueoflegends.com/cdn/12.23.1/data/en_US/champion.json").json()
+    #print(list(filter(lambda x:x["id"] == mastery_data[0]["championId"], ids_to_name)))
+
+    info = {}
+    info["Name"] = user
+    info["Level"] = data["summonerLevel"]
+    info["id"] = data["id"]
+    info["champion"] = mastery_data[0]["championId"]
+    info['points'] = mastery_data[0]["championPoints"]
+    return info
 
 
-    return data["summonerLevel"]
+#pp.pprint(find_summoner_info("UntameableFire"))
