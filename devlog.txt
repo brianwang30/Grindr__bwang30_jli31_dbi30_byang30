@@ -125,3 +125,10 @@ pokemon and anime quiz now all redirect and work properly
 Donald Bi -- 2022-12-13 14:02
 --------------------------------------------------------------
 The pokemon quiz now actually puts the correct answer in random places
+
+==============================================================
+Brian Wang -- 2022-12-14 14:00
+--------------------------------------------------------------
+Fixed some redirect problems to animequiz
+started grass calc with league levels
+(api key hell)
