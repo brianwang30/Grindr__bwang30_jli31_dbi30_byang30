@@ -42,8 +42,8 @@
     </nav>
 
     <form class="answer-choice-form">
-        
-        <img src="{{correct_img}}" alt="" class="poke-img">
+        <div class="banner">{{status}}</div>
+        <img src="{{correct_img}}" alt="pokemon" class="quiz-img pokemon">
         <div class="answer-choice {{choices_status[0]}}">{{choices[0]}}</div>
         <div class="answer-choice {{choices_status[1]}}">{{choices[1]}}</div>
         <div class="answer-choice {{choices_status[2]}}">{{choices[2]}}</div>
@@ -70,6 +70,12 @@
             answer.addEventListener('transitionend', function(){
                 this.classList.remove('pressed');
             })
+        })
+
+        const body = document.querySelector('body');
+        const banner = document.querySelector('.banner');
+        body.addEventListener('load', function() {
+            banner.classList.add('appear');
         })
     </script>
 </body>
