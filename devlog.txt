@@ -108,6 +108,10 @@ Brian Wang -- 2022-12-12 14:00
 --------------------------------------------------------------
 (Struggled with MAL)
 
+Donald Bi -- 2022-12-12 14:02
+--------------------------------------------------------------
+Rerouted aniquiz to animequiz
+
 Jian Hong Li -- 2022-12-12 22:34
 --------------------------------------------------------------
 Grass ooo Meterrr
@@ -117,3 +121,7 @@ Brian Wang -- 2022-12-13 14:00
 --------------------------------------------------------------
 Fixed bug with quizzes that let you farm questions by redirecting
 pokemon and anime quiz now all redirect and work properly
+
+Donald Bi -- 2022-12-13 14:02
+--------------------------------------------------------------
+The pokemon quiz now actually puts the correct answer in random places
