@@ -79,6 +79,9 @@ def find_summoner_info(user):
     info["champion"] = mastery_data[0]["championId"]
     info['points'] = mastery_data[0]["championPoints"]
     return info
-
+def apexL_info(platform, username):
+    url = f'https://public-api.tracker.gg/apex/v1/standard/profile/{platform}/{username}'
+    data = json.loads(requests.get(url, headers = {'TRN-Api-Key': token }).text) #set up retrieving token level is at metadata level
+    pp.pprint(data)
 
 #pp.pprint(find_summoner_info("UntameableFire"))
