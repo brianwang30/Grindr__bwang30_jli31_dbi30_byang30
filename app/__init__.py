@@ -143,6 +143,18 @@ def animeincorrect():
 
   return redirect('/animequiz/wrong')
 
+#calculate games
+@app.route('/games', methods = ['GET', 'POST'])
+def game():
+  id = get_userID(session['username'])
+  #update_gameusername(id, )
+  #when funct
+  league = find_summoner_info(request.form.get('league'))
+  if league["name"] != None:
+    level = league["Level"]
+    update_account_grass(id, f"-{level} * 100")
+  redirect('/profile')
+
 
 if __name__ == '__main__':
   app.debug = True
