@@ -1,4 +1,5 @@
 import sqlite3
+import random
 
 DB_FILE = "database.db"
 
@@ -8,11 +9,13 @@ c = db.cursor()
 # Login information
 c.execute("CREATE TABLE if not Exists users(ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, Did_Questions BOOLEAN);")
 # Insult database
-c.execute("CREATE TABLE if not Exists insult(ID INTEGER PRIMARY KEY AUTOINCREMENT, Insult_Text TEXT, Grass_Level INTEGER, API_INFO TEXT);")
+c.execute("CREATE TABLE if not Exists insult(lv5 TEXT, lv4 TEXT, lv3 TEXT, lv2 TEXT, lv1 TEXT);")
 # Grassmeter
 c.execute("CREATE TABLE if not Exists grassmeter(ID INTEGER PRIMARY KEY AUTOINCREMENT, Quiz_Grass INTEGER, Grass INTEGER);")
 # Game accounts
-c.execute("CREATE TABLE if not Exists game(ID INTEGER PRIMARY KEY AUTOINCREMENT, Game TEXT, Game_Username);")
+c.execute("CREATE TABLE if not Exists game(ID INTEGER PRIMARY KEY AUTOINCREMENT, Game TEXT, Game_Username TEXT);")
+its = ["You have never touched grass...", "you're terrible", "mmm not bad", "getting there", "as green as nature!"]
+c.execute('INSERT or IGNORE INTO insult(lv5, lv4, lv3, lv2, lv1) VALUES (?, ?, ?, ?, ?);', (its[0], its[1], its[2], its[3],its[4]))
 db.commit()
 c.close()
 
@@ -55,10 +58,11 @@ def verify(username, password):
 
 def get_insult(grass_level):
     c = db_connect()
-    c.execute('SELECT Insult_Text FROM insult WHERE Grass_Level =?;' ,(grass_level,))
-    text = c.fetchone()
+    c.execute('SELECT ? FROM insult;' ,(grass_level,))
+    text = c.fetchone()[0]
     db_close()
-    return text[1]
+    insult = ".".split(text) 
+    return insult[rand(len(insult) - 1)]
 
 def ID_exist(id):
     c = db_connect()
@@ -115,7 +119,7 @@ def update_account_grass(id, grass):
 def update_quiz_grass(id, grass):
     old = get_quiz_grass(id)
     c = db_connect()
-    c.execute('UPDATE grassmeter SET Quiz_Grass =? WHERE ID=?;', (old + grass, id))
+    c.execute('UPDATE grassmeter SET Quiz_Grass =? WHERE ID=?;', (old + grass,))
     db_close()
     return None
 
