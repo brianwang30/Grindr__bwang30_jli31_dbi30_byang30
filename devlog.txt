@@ -132,3 +132,7 @@ Brian Wang -- 2022-12-14 14:00
 Fixed some redirect problems to animequiz
 started grass calc with league levels
 (api key hell)
+
+Jian Hong Li -- 2022-12-15 13:37
+--------------------------------------------------------------
+create database for game and grass insults
