@@ -75,11 +75,11 @@ def pokequiz(stat):
   choices_status[correct_index] = 'correct'
   #return render_template('pokequiz.html')
   id = get_userID(session['username'])
-  return render_template('pokequiz.html', 
+  return render_template('pokequiz.html',
   status = stat,
-  choices = choices, 
-  correct_img = correct_img, 
-  choices_status = choices_status , 
+  choices = choices,
+  correct_img = correct_img,
+  choices_status = choices_status ,
   grassometer = get_grass(id))
   #return render_template('pokequiz.html', img = q['img'], correct = q['right'], a0 = q['ans'][0], a1 = q['ans'][1], a2 = q['ans'][2])
 
@@ -104,8 +104,8 @@ def pokeincorrect():
 def animequiz(stat):
     animes = api.random_anime()
     id = get_userID(session['username'])
-    
-    
+
+
     if len(animes) == 0: #len 0 dictionary is printed when API key is wrong or not provided
       return render_template('animequiz.html', status = 'No/Wrong API key')
     else:
@@ -119,7 +119,7 @@ def animequiz(stat):
       choices_status[correct_index] = 'correct'
 
 
-      return render_template('animequiz.html', 
+      return render_template('animequiz.html',
       status = stat,
       choices = choices,
       correct_img = correct_img,
@@ -150,10 +150,11 @@ def game():
   #update_gameusername(id, )
   #when funct
   league = find_summoner_info(request.form.get('league'))
-  if league["name"] != None:
+  if len(league) != 0:
     level = league["Level"]
-    update_account_grass(id, f"-{level} * 100")
-  redirect('/profile')
+    minus = int(level) * 100
+    update_account_grass(id, minus)
+  return redirect('/profile')
 
 
 if __name__ == '__main__':
