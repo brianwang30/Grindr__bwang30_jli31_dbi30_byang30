@@ -58,11 +58,11 @@ def verify(username, password):
 
 def get_insult(grass_level):
     c = db_connect()
-    c.execute('SELECT ? FROM insult;' ,(grass_level,))
-    text = c.fetchone()[0]
+    c.execute('SELECT ' + str(grass_level) + ' FROM insult;')
+    text = c.fetchone()
     db_close()
-    insult = ".".split(text) 
-    return insult[rand(len(insult) - 1)]
+    #l = text.split(';') 
+    return text#l[random.randint(0, len(l) - 1)]
 
 def ID_exist(id):
     c = db_connect()
