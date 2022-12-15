@@ -42,7 +42,7 @@
     </nav>
 
     <form class="answer-choice-form">
-        <div class="banner">{{status}}</div>
+        <div class="banner">{{status}} <br> {{grass_diff}}</div>
         <img src="{{correct_img}}" alt="pokemon" class="quiz-img pokemon">
         <div class="answer-choice {{choices_status[0]}}">{{choices[0]}}</div>
         <div class="answer-choice {{choices_status[1]}}">{{choices[1]}}</div>
@@ -74,9 +74,26 @@
 
         const body = document.querySelector('body');
         const banner = document.querySelector('.banner');
-        body.addEventListener('load', function() {
-            banner.classList.add('appear');
-        })
+
+        /* adds a class depending on if the answer is wrong or correct */
+        if (banner.textContent.includes('Correct')) {
+            banner.classList.add('green-text');
+        } else if (banner.textContent.includes('Wrong')) {
+            banner.classList.add('red-text');
+        } else {
+            banner.classList.add('no-text');
+        }
+
+        /* if the the answer is correct or wrong, then it does the banner 
+        animation*/
+        if (!banner.classList.contains('no-text')) {
+            body.onload = function() {
+                banner.classList.add('appear');
+            }
+            banner.addEventListener('transitionend', function(){
+                banner.classList.remove('appear');
+            })
+        }
     </script>
 </body>
 </html>

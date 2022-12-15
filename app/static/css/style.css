@@ -43,6 +43,10 @@ body.animequiz {
     text-shadow: 1px 1px 3px rgb(107, 51, 51);
 }
 
+.no-text {
+    display: none;
+}
+
 .error {
     font-size: 12px;
 }
@@ -205,6 +209,8 @@ nav.sticky .grass-meter .value {
     color:rgb(73, 73, 73);
     text-shadow: 1px 1px 3px rgb(165, 165, 165);
     transition: 0.2s;
+    width: 7vw;
+    text-align: center;
 }
 
 .left {
@@ -311,9 +317,19 @@ nav.sticky .grass-meter .value {
 
 .banner {
     margin-bottom: -15vh;
-    background-color: white;
+    margin-top: 5vh;
+    background-color: rgba(0,0,0,0.3);
     width: 0;
-    display: none;
+    text-align: center;
+    overflow: hidden;
+    transition: 2s;
+    line-height: 25px;
+    padding: 5px 0px;
+    border-radius: 8px;
+}
+
+.banner.appear {
+    width: 12vw;
 }
 
 .quiz-img {

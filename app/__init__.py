@@ -75,8 +75,13 @@ def pokequiz(stat):
   choices_status[correct_index] = 'correct'
   #return render_template('pokequiz.html')
   id = get_userID(session['username'])
+
+  grass_diff = '-250'
+  if stat == 'wrong': grass_diff = '+100'
+
   return render_template('pokequiz.html', 
-  status = stat,
+  status = stat.capitalize(),
+  grass_diff = grass_diff,
   choices = choices, 
   correct_img = correct_img, 
   choices_status = choices_status , 
