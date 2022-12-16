@@ -30,7 +30,7 @@ def db_close():
 def create_user(username, password):
     c = db_connect()
     c.execute('INSERT INTO users(username, password, Did_Questions) VALUES (?, ?, ?);', (username, password, False))
-    c.execute('INSERT INTO grassmeter(Quiz_Grass, Grass) VALUES (?, ?);', (0, 0))
+    c.execute('INSERT INTO grassmeter(Quiz_Grass, Grass, Game_Grass) VALUES (?, ?, ?);', (0, 0, 0))
     c.execute('INSERT INTO game(Game, Game_Username) VALUES (?,?);', ("LOL", ""))
     db.commit()
     #db_close() Dont know what exactly the problem is but dont uncomment this for signup to work
@@ -60,7 +60,7 @@ def get_insult(grass_level):
     c.execute('SELECT ' + str(grass_level) + ' FROM insult;')
     text = c.fetchone()[0]
     db_close()
-    l = text.split('@@') 
+    l = text.split('@@')
     return l[random.randint(0, len(l) - 1)]
 
 def ID_exist(id):
@@ -84,11 +84,18 @@ def get_userID(username):
 def get_grass(id):
     c = db_connect()
     if ID_exist(id):
-        c.execute('SELECT * FROM grassmeter WHERE ID=?;', (id,))
-        text = c.fetchone()
-        db_close()
-        return text[2]
-    return "User doesn't exists"
+        quiz = get_quiz_grass(id)
+        game = get_game_grass(id)
+        return quiz + game
+    return "User doesn't exist"
+
+def get_game_grass(id):
+    c = db_connect()
+    if ID_exist(id):
+        c.execute('SELECT Game_Grass FROM grassmeter WHERE ID = ?', (id,))
+        text = c.fetchone()[3]
+        return text
+    return "User doesn't exist"
 
 def get_quiz_grass(id):
     c = db_connect()
@@ -128,13 +135,13 @@ def update_grass(id, grass):
     c = db_connect()
     c.execute('UPDATE grassmeter SET Grass =? WHERE ID=?;', (old + grass, id))
     db_close()
-    return None 
+    return None
 
 def update_game_grass(id, lv):
     c = db_connect()
-    c.execute('UPDATE grassmeter SET Grass =? WHERE ID=?;', (lv * 100, id))
+    c.execute('UPDATE grassmeter SET Game_Grass =? WHERE ID=?;', (lv * 100, id))
     db_close()
-    return None 
+    return None
 
 def update_gameusername(id, game_username):
     c = db_connect()
