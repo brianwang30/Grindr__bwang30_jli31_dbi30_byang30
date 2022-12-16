@@ -66,18 +66,18 @@ def find_summoner_info(user):
             data = json.loads(requests.get(url, headers = {"X-Riot-Token" : token}).text)
             url = f'https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{data["id"]}'
             mastery_data = json.loads(requests.get(url, headers = {"X-Riot-Token" : token}).text)
+            info = {}
+            info["Name"] = user
+            info["Level"] = data["summonerLevel"]
+            info["id"] = data["id"]
+            info["champion"] = mastery_data[0]["championId"]
+            info['points'] = mastery_data[0]["championPoints"]
     except:
         print("No API key provided.")
     #Getting name of highest champion mastery bc riot api only gives champ id
     #ids_to_name = requests.get("https://ddragon.leagueoflegends.com/cdn/12.23.1/data/en_US/champion.json").json()
     #print(list(filter(lambda x:x["id"] == mastery_data[0]["championId"], ids_to_name)))
 
-    info = {}
-    info["Name"] = user
-    info["Level"] = data["summonerLevel"]
-    info["id"] = data["id"]
-    info["champion"] = mastery_data[0]["championId"]
-    info['points'] = mastery_data[0]["championPoints"]
     return info
 def apexL_info(platform, username):
     url = f'https://public-api.tracker.gg/apex/v1/standard/profile/{platform}/{username}'
