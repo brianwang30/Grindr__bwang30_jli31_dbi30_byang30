@@ -161,6 +161,7 @@ def game():
   #update_gameusername(id, )
   #when funct
   league = find_summoner_info(request.form.get('league'))
+  print(league)
   if len(league) != 0:
     level = -league["Level"]
     update_game_grass(id, level)
