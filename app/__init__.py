@@ -162,9 +162,8 @@ def game():
   #when funct
   league = find_summoner_info(request.form.get('league'))
   if len(league) != 0:
-    level = league["Level"]
-    minus = int(level) * 100
-    update_account_grass(id, minus)
+    level = -league["Level"]
+    update_game_grass(id, level)
   return redirect('/profile')
 
 

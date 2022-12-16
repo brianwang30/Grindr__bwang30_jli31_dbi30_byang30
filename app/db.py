@@ -1,3 +1,5 @@
+import sqlite3
+
 DB_FILE = "database.db"
 
 db = None
