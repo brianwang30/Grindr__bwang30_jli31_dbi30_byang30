@@ -58,6 +58,7 @@ def random_anime():
 #pp.pprint(random_anime())
 
 def find_summoner_info(user):
+    info = {}
     try: #check for if text file for key exist
         with open("keys/key_Riot.txt", "r") as file:
             api_key = file.read().strip()
@@ -66,7 +67,7 @@ def find_summoner_info(user):
             data = json.loads(requests.get(url, headers = {"X-Riot-Token" : token}).text)
             url = f'https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{data["id"]}'
             mastery_data = json.loads(requests.get(url, headers = {"X-Riot-Token" : token}).text)
-            info = {}
+            
             info["Name"] = user
             info["Level"] = data["summonerLevel"]
             info["id"] = data["id"]

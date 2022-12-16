@@ -1,5 +1,4 @@
 import sqlite3
-import random
 
 DB_FILE = "database.db"
 
@@ -14,8 +13,8 @@ c.execute("CREATE TABLE if not Exists insult(lv5 TEXT, lv4 TEXT, lv3 TEXT, lv2 T
 c.execute("CREATE TABLE if not Exists grassmeter(ID INTEGER PRIMARY KEY AUTOINCREMENT, Quiz_Grass INTEGER, Grass INTEGER);")
 # Game accounts
 c.execute("CREATE TABLE if not Exists game(ID INTEGER PRIMARY KEY AUTOINCREMENT, Game TEXT, Game_Username TEXT);")
-its = ["You have never touched grass...", "you're terrible", "mmm not bad", "getting there", "as green as nature!"]
-#c.execute('INSERT or IGNORE INTO insult(lv5, lv4, lv3, lv2, lv1) VALUES (?, ?, ?, ?, ?);', (its[0], its[1], its[2], its[3],its[4]))
+its = ["You have never touched grass...@@", "you're terrible@@", "mmm not bad@@", "getting there@@", "as green as nature!@@"]
+c.execute('INSERT or IGNORE INTO insult(lv5, lv4, lv3, lv2, lv1) VALUES (?, ?, ?, ?, ?);', (its[0], its[1], its[2], its[3],its[4]))
 db.commit()
 c.close()
 
@@ -31,7 +30,7 @@ def db_close():
 def create_user(username, password):
     c = db_connect()
     c.execute('INSERT INTO users(username, password, Did_Questions) VALUES (?, ?, ?);', (username, password, False))
-    c.execute('INSERT INTO grassmeter(Quiz_Grass, Grass) VALUES (?, ?);', (0, 0))
+    c.execute('INSERT INTO grassmeter(Quiz_Grass, Grass, Game_Grass) VALUES (?, ?, ?);', (0, 0, 0))
     c.execute('INSERT INTO game(Game, Game_Username) VALUES (?,?);', ("LOL", ""))
     db.commit()
     #db_close() Dont know what exactly the problem is but dont uncomment this for signup to work
@@ -59,10 +58,10 @@ def verify(username, password):
 def get_insult(grass_level):
     c = db_connect()
     c.execute('SELECT ' + str(grass_level) + ' FROM insult;')
-    text = c.fetchone()
+    text = c.fetchone()[0]
     db_close()
-    #l = text.split(';') 
-    return text#l[random.randint(0, len(l) - 1)]
+    l = text.split('@@')
+    return l[random.randint(0, len(l) - 1)]
 
 def ID_exist(id):
     c = db_connect()
@@ -85,11 +84,18 @@ def get_userID(username):
 def get_grass(id):
     c = db_connect()
     if ID_exist(id):
-        c.execute('SELECT * FROM grassmeter WHERE ID=?;', (id,))
-        text = c.fetchone()
-        db_close()
-        return text[2]
-    return "User doesn't exists"
+        quiz = get_quiz_grass(id)
+        game = get_game_grass(id)
+        return quiz + game
+    return "User doesn't exist"
+
+def get_game_grass(id):
+    c = db_connect()
+    if ID_exist(id):
+        c.execute('SELECT Game_Grass FROM grassmeter WHERE ID = ?', (id,))
+        text = c.fetchone()[3]
+        return text
+    return "User doesn't exist"
 
 def get_quiz_grass(id):
     c = db_connect()
@@ -119,7 +125,7 @@ def update_account_grass(id, grass):
 def update_quiz_grass(id, grass):
     old = get_quiz_grass(id)
     c = db_connect()
-    c.execute('UPDATE grassmeter SET Quiz_Grass =? WHERE ID=?;', (old + grass, id))
+    c.execute('UPDATE grassmeter SET Quiz_Grass =? WHERE ID=?;', (old + grass,))
     db_close()
     return None
 
@@ -129,11 +135,24 @@ def update_grass(id, grass):
     c = db_connect()
     c.execute('UPDATE grassmeter SET Grass =? WHERE ID=?;', (old + grass, id))
     db_close()
-    return None 
+    return None
 
-def update_gameusername(id, game_username):
+def update_game_grass(id, lv):
     c = db_connect()
-    c.execute('UPDATE game SET Game_Username =? WHERE ID=?', (game_username,id))
+    c.execute('UPDATE grassmeter SET Game_Grass =? WHERE ID=?;', (lv * 100, id))
     db_close()
     return None
 
+def update_gameusername(id, game_username):
+    c = db_connect()
+    c.execute('UPDATE game SET Game_Username =? WHERE ID=?;', (game_username,id))
+    db_close()
+    return None
+
+def add_insult(text, grass_level):
+    old = get_insult(grass_level)
+    old = old + "@@" + text
+    c = db_connect()
+    c.execute('UPDATE insult SET ' + str(grass_level) + ' =?;', (old,))
+    db_close()
+    return None
