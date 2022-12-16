@@ -15,7 +15,7 @@ c.execute("CREATE TABLE if not Exists grassmeter(ID INTEGER PRIMARY KEY AUTOINCR
 # Game accounts
 c.execute("CREATE TABLE if not Exists game(ID INTEGER PRIMARY KEY AUTOINCREMENT, Game TEXT, Game_Username TEXT);")
 its = ["You have never touched grass...", "you're terrible", "mmm not bad", "getting there", "as green as nature!"]
-c.execute('INSERT or IGNORE INTO insult(lv5, lv4, lv3, lv2, lv1) VALUES (?, ?, ?, ?, ?);', (its[0], its[1], its[2], its[3],its[4]))
+#c.execute('INSERT or IGNORE INTO insult(lv5, lv4, lv3, lv2, lv1) VALUES (?, ?, ?, ?, ?);', (its[0], its[1], its[2], its[3],its[4]))
 db.commit()
 c.close()
 
@@ -119,7 +119,7 @@ def update_account_grass(id, grass):
 def update_quiz_grass(id, grass):
     old = get_quiz_grass(id)
     c = db_connect()
-    c.execute('UPDATE grassmeter SET Quiz_Grass =? WHERE ID=?;', (old + grass,))
+    c.execute('UPDATE grassmeter SET Quiz_Grass =? WHERE ID=?;', (old + grass, id))
     db_close()
     return None
 

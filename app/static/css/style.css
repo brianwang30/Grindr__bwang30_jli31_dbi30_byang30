@@ -45,6 +45,7 @@ body.animequiz {
 
 .no-text {
     display: none;
+    margin: 0;
 }
 
 .error {
@@ -210,6 +211,7 @@ nav.sticky .grass-meter .value {
     text-shadow: 1px 1px 3px rgb(165, 165, 165);
     transition: 0.2s;
     width: 7vw;
+    min-width: 120px;
     text-align: center;
 }
 
@@ -276,7 +278,7 @@ nav.sticky .grass-meter .value {
     flex-direction: column;
     align-items: center;
     gap: 25px;
-    margin-top: 0vh;
+    margin-top: 150px;
 }
 
 .answer-choice {
@@ -313,28 +315,63 @@ nav.sticky .grass-meter .value {
     border-radius: 10px;
     padding: 5px 10px;
     box-shadow: 1px 1px 3px 3px rgb(169, 251, 169);
+    color: gray;
+}
+
+.submit.inactive {
+    box-shadow: 1px 1px 3px 3px gray;
+    color: gray;
+}
+
+.submit.inactive:hover {
+    background-color: white;
+    cursor:default;
 }
 
 .banner {
-    margin-bottom: -15vh;
-    margin-top: 5vh;
-    background-color: rgba(0,0,0,0.3);
+    margin-top: 80px;
+    background-color: rgba(0,0,0,0.6);
     width: 0;
     text-align: center;
     overflow: hidden;
-    transition: 2s;
     line-height: 25px;
     padding: 5px 0px;
     border-radius: 8px;
 }
 
-.banner.appear {
-    width: 12vw;
+@keyframes bannerClose {
+    50% {width: 150px;}
+    90% {margin-top: 80px;}
+    80% {height: 100%;}
+    100% {width: 0; height: 0; margin-top: 0;}
 }
+
+.banner.appear {
+    animation-name: bannerClose;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+.animequiz .banner.appear {
+    margin-top: 0;
+}
+
+@keyframes bannerCloseAnime {
+    50% {width: 150px;}
+    90% {margin-top: 0;}
+    80% {height: 100%;}
+    100% {width: 0; height: 0; margin-top: -80px;}
+}
+
+.animequiz .banner.appear {
+    animation-name: bannerCloseAnime;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
 
 .quiz-img {
     width: 15vw;
-    margin-top: 15vh;
     box-shadow: 0px 0px 5px 4px white;
 }
 

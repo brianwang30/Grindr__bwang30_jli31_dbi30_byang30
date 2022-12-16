@@ -69,9 +69,12 @@ def profile():
 def pokequiz(stat):
   q = new_quiz()
   choices = q['ans']
+  #capitalizes all the pokemon in the list
+  choices = list(map(lambda x: x.capitalize(), choices))
   correct_img = q['img']
   choices_status = ['incorrect','incorrect','incorrect','incorrect']
-  correct_index = choices.index(q['right'])
+  #find the index of the correct pokemon and makes the element in choices_status correct
+  correct_index = choices.index(q['right'].capitalize())
   choices_status[correct_index] = 'correct'
   #return render_template('pokequiz.html')
   id = get_userID(session['username'])
@@ -123,9 +126,12 @@ def animequiz(stat):
       choices_status = ['incorrect','incorrect','incorrect','incorrect']
       choices_status[correct_index] = 'correct'
 
+      grass_diff = '-250'
+      if stat == 'wrong': grass_diff = '+100'
 
       return render_template('animequiz.html',
-      status = stat,
+      status = stat.capitalize(),
+      grass_diff = grass_diff,
       choices = choices,
       correct_img = correct_img,
       choices_status = choices_status,
