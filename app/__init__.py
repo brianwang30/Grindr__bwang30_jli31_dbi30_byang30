@@ -115,7 +115,8 @@ def animequiz(stat):
 
 
     if len(animes) == 0: #len 0 dictionary is printed when API key is wrong or not provided
-      return render_template('animequiz.html', status = 'No/Wrong API key')
+      print(animes)
+      return render_template('error.html', status = 'No/Wrong API key')
     else:
       choices = []
       for anime in animes.keys():

@@ -36,7 +36,7 @@ def random_anime():
     data = ""
     client_id = "" #Pulling api key
     try: #check for if text file for key exist
-        with open("keys/key_MAL.txt", "r") as file:
+        with open("keys/MAL_key.txt", "r") as file:
             api_key = file.read().strip()
             client_id = api_key
             data = json.loads(requests.get(url, headers={"X-MAL-CLIENT-ID": client_id}).text)
@@ -55,7 +55,7 @@ def random_anime():
         print("No API key provided.")
     return info
 
-#pp.pprint(random_anime()) Testing
+#pp.pprint(random_anime())
 
 def find_summoner_info(user):
     try: #check for if text file for key exist
