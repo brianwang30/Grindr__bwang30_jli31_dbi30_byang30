@@ -36,7 +36,7 @@ def random_anime():
     data = ""
     client_id = "" #Pulling api key
     try: #check for if text file for key exist
-        with open("keys/MAL_key.txt", "r") as file:
+        with open("keys/key_MAL.txt", "r") as file:
             api_key = file.read().strip()
             client_id = api_key
             data = json.loads(requests.get(url, headers={"X-MAL-CLIENT-ID": client_id}).text)
@@ -59,7 +59,7 @@ def random_anime():
 
 def find_summoner_info(user):
     try: #check for if text file for key exist
-        with open("keys/RiotAPI.txt", "r") as file:
+        with open("keys/key_Riot.txt", "r") as file:
             api_key = file.read().strip()
             token = api_key
             url = f"https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{user}"
