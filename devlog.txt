@@ -104,6 +104,16 @@ Jian Hong Li -- 2022-12-11 21:48
 Fixed database stuff
 
 ==============================================================
+Brian (Paul) Yang -- 2022-12-12 12:35
+--------------------------------------------------------------
+Added chacks to MAL api calls so it doesnt break and crash the whole thing
+
+==============================================================
+Brian (Paul) Yang -- 2022-12-12 12:35
+--------------------------------------------------------------
+Created animequiz html (correct and incorrect page) that displays a picture and 4 choices
+
+==============================================================
 Brian Wang -- 2022-12-12 14:00
 --------------------------------------------------------------
 (Struggled with MAL)
@@ -127,11 +137,21 @@ Donald Bi -- 2022-12-13 14:02
 The pokemon quiz now actually puts the correct answer in random places
 
 ==============================================================
+Brian Yang -- 2022-12-14 18:00
+--------------------------------------------------------------
+Created apex legend api (only calls for now) Can't find where the levels is in json file
+
+==============================================================
 Brian Wang -- 2022-12-14 14:00
 --------------------------------------------------------------
 Fixed some redirect problems to animequiz
 started grass calc with league levels
 (api key hell)
+
+==============================================================
+Brian Yang -- 2022-12-14 18:00
+--------------------------------------------------------------
+Changed league api to list everything we want (name, id, mastery, level, top champ)
 
 ==============================================================
 Brian Wang + Paul -- 2022-12-15 14:00
@@ -141,6 +161,11 @@ League frontend stuff now works
 Jian Hong Li -- 2022-12-15 13:37
 --------------------------------------------------------------
 create database for game and grass insults
+
+==============================================================
+Brian Yang -- 2022-12-14 18:00
+--------------------------------------------------------------
+Fixed league api so that it doesnt break when calling an empty dict
 
 ==============================================================
 Brian Wang -- 2022-12-16 14:00
