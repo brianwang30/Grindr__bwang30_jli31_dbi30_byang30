@@ -1,4 +1,5 @@
 import sqlite3
+import random
 
 DB_FILE = "database.db"
 
@@ -13,7 +14,7 @@ c.execute("CREATE TABLE if not Exists insult(lv5 TEXT, lv4 TEXT, lv3 TEXT, lv2 T
 c.execute("CREATE TABLE if not Exists grassmeter(ID INTEGER PRIMARY KEY AUTOINCREMENT, Quiz_Grass INTEGER, Grass INTEGER, Game_Grass INTEGER);")
 # Game accounts
 c.execute("CREATE TABLE if not Exists game(ID INTEGER PRIMARY KEY AUTOINCREMENT, Game TEXT, Game_Username TEXT);")
-its = ["You have never touched grass...@@", "you're terrible@@", "mmm not bad@@", "getting there@@", "as green as nature!@@"]
+its = ["You probably live in your parents' basement@@", "Looks like all the grass you have touched were digital!@@", "This could go either way, what are you really?@@", "Are you too poor to afford a computer? Or are you lying on the quizes?@@", "You green as nature!@@"]
 c.execute('INSERT or IGNORE INTO insult(lv5, lv4, lv3, lv2, lv1) VALUES (?, ?, ?, ?, ?);', (its[0], its[1], its[2], its[3],its[4]))
 db.commit()
 c.close()
@@ -114,6 +115,21 @@ def get_gameuser(id):
         db_close()
         return text[0]
     return "User doesn't exist"
+
+def get_grasslv(id):
+    c = db_connect()
+    if ID_exist(id):
+        grass = get_grass(id)
+        if (grass > int("-5000")):
+            return "lv5"
+        elif (grass > int("-2500")):
+            return "lv4"
+        elif(grass > 0):
+            return "lv3"
+        elif(grass > 2500):
+            return "lv2"
+        else:
+            return "lv1" 
 
 
 def update_account_grass(id, grass):
