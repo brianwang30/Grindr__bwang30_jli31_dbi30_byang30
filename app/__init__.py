@@ -54,7 +54,8 @@ def authenticate():
 @app.route('/logout')
 def logout():
   session.pop('username')
-  return redirect('/')
+  #return redirect('/')
+  return render_template('questionnaire.html')
 
 #prof page
 @app.route('/profile', methods=['GET'])
@@ -74,7 +75,7 @@ def pokequiz(stat):
   correct_img = q['img']
   choices_status = ['incorrect','incorrect','incorrect','incorrect']
   #find the index of the correct pokemon and makes the element in choices_status correct
-  correct_index = choices.index(q['right'].capitalize())
+  correct_index = choices.index(q['rig  ht'].capitalize())
   choices_status[correct_index] = 'correct'
   #return render_template('pokequiz.html')
   id = get_userID(session['username'])

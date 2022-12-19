@@ -10,10 +10,9 @@ answers.forEach(answer => {
         answers.forEach(a => a.classList.remove('chosen'))
         this.classList.add('chosen');
         /* turns gray submit intro green*/
-        if (submit.classList.contains('inactive')) submit.classList.remove('inactive')
+        if (submit.disabled) submit.disabled = false;
         /* changes formaction of the submit button to correct route */
         const routeStart = submit.classList[1];
-        console.log(routeStart)
         if (this.classList.contains('correct')) {
             submit.formAction = `/${routeStart}correct`;
         } else {
@@ -21,7 +20,7 @@ answers.forEach(answer => {
         }
 
         /* adds pressed class to have the click effect */
-        answer.classList.add('pressed');
+        answer.classList.add('pressed');    
     })
 })
 answers.forEach(answer => {

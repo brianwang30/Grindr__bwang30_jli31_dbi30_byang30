@@ -27,6 +27,12 @@ body.animequiz {
     background-attachment: fixed;      
 }
 
+body.questionnaire {
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://preview.redd.it/5mzbllp4g2i91.jpg?auto=webp&s=68c716b56698b21be9578331f80cf2984c93efb8");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 .green-text,
 .red-text {
     color: rgb(169, 251, 169);
@@ -251,6 +257,10 @@ nav.sticky .grass-meter .value {
     background-image: url("https://images8.alphacoders.com/107/thumb-1920-1076527.jpg");
 }
 
+.apex {
+    background-image: url("https://i.redd.it/5p16231zzx651.png");
+}
+
 .game-user-inputs {
     display: flex;
     flex-direction: column;
@@ -267,6 +277,7 @@ nav.sticky .grass-meter .value {
     font-size: 18px;
     text-align: center;
     color: rgb(5, 75, 137);
+    text-shadow: 0px 0px 2px rgb(79, 139, 190);
 }
 
 /*---------- end of game section css ----------*/
@@ -318,12 +329,12 @@ nav.sticky .grass-meter .value {
     color: gray;
 }
 
-.submit.inactive {
+.submit:disabled {
     box-shadow: 1px 1px 3px 3px gray;
     color: gray;
 }
 
-.submit.inactive:hover {
+.submit:disabled:hover {
     background-color: white;
     cursor:default;
 }
@@ -341,34 +352,17 @@ nav.sticky .grass-meter .value {
 
 @keyframes bannerClose {
     50% {width: 150px;}
-    90% {margin-top: 80px;}
+    90% {margin-top: 0;}
     80% {height: 100%;}
-    100% {width: 0; height: 0; margin-top: 0;}
+    100% {width: 0; height: 0; margin-top: -80px;}
 }
 
 .banner.appear {
     animation-name: bannerClose;
     animation-duration: 4s;
     animation-fill-mode: forwards;
-}
-
-.animequiz .banner.appear {
     margin-top: 0;
 }
-
-@keyframes bannerCloseAnime {
-    50% {width: 150px;}
-    90% {margin-top: 0;}
-    80% {height: 100%;}
-    100% {width: 0; height: 0; margin-top: -80px;}
-}
-
-.animequiz .banner.appear {
-    animation-name: bannerCloseAnime;
-    animation-duration: 4s;
-    animation-fill-mode: forwards;
-}
-
 
 .quiz-img {
     width: 15vw;
