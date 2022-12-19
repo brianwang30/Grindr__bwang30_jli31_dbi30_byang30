@@ -116,6 +116,21 @@ def get_gameuser(id):
         return text[0]
     return "User doesn't exist"
 
+def get_grasslv(id):
+    c = db_connect()
+    if ID_exist(id):
+        grass = get_grass(id)
+        if (grass > int("-5000")):
+            return "lv5"
+        elif (grass > int("-2500")):
+            return "lv4"
+        elif(grass > 0):
+            return "lv3"
+        elif(grass > 2500):
+            return "lv2"
+        else:
+            return "lv1" 
+
 
 def update_account_grass(id, grass):
     c = db_connect()
