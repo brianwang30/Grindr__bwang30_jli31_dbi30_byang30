@@ -180,3 +180,7 @@ Populate insult database and created add_insult() method
 Brian Yang -- 2022-12-19 14:00
 --------------------------------------------------------------
 Created a apex legends api call that returns the level of the player
+
+Brian Wang -- 2022-12-19 14:00
+--------------------------------------------------------------
+Added forced change directories in api calling code to ensure that the user will be in app to read keys

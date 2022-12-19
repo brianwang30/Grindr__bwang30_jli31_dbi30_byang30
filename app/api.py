@@ -2,6 +2,7 @@ import requests
 import json
 import pprint
 import random
+import os
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -28,6 +29,10 @@ def random_poke():
 
 def random_anime():
     info = {}
+    dir = os.getcwd()
+    if dir[len(dir)-3:] != 'app':
+        os.chdir("app/")
+
     random_anime_ranks = []
     for i in range(4):
         random_anime_ranks.append(random.randrange(500))
@@ -59,6 +64,10 @@ def random_anime():
 
 def find_summoner_info(user):
     info = {}
+    dir = os.getcwd()
+    if dir[len(dir)-3:] != 'app':
+        os.chdir("app/")
+
     try: #check for if text file for key exist
         with open("keys/key_Riot.txt", "r") as file:
             api_key = file.read().strip()
@@ -81,6 +90,10 @@ def find_summoner_info(user):
     return info
 
 def apexL_info(platform, username): #Platforms: 1 = XBOX 2 = PSN 5 = Origin / PC
+    dir = os.getcwd()
+    if dir[len(dir)-3:] != 'app':
+        os.chdir("app/")
+        
     level = 0
     try:
         with open("keys/key_Apex.txt", "r") as file:            
