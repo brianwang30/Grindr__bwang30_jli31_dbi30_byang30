@@ -78,11 +78,16 @@ def find_summoner_info(user):
     #Getting name of highest champion mastery bc riot api only gives champ id
     #ids_to_name = requests.get("https://ddragon.leagueoflegends.com/cdn/12.23.1/data/en_US/champion.json").json()
     #print(list(filter(lambda x:x["id"] == mastery_data[0]["championId"], ids_to_name)))
-
     return info
-def apexL_info(platform, username):
-    url = f'https://public-api.tracker.gg/apex/v1/standard/profile/{platform}/{username}'
-    data = json.loads(requests.get(url, headers = {'TRN-Api-Key': token }).text) #set up retrieving token level is at metadata level
-    pp.pprint(data)
 
-#pp.pprint(find_summoner_info("UntameableFire"))
+def apexL_info(platform, username): #Platforms: 1 = XBOX 2 = PSN 5 = Origin / PC
+    level = 0
+    try:
+        with open("keys/key_Apex.txt", "r") as file:            
+            token = file.read().strip()
+            url = f'https://public-api.tracker.gg/apex/v1/standard/profile/{platform}/{username}'
+            data = json.loads(requests.get(url, headers = {'TRN-Api-Key': token }).text) #set up retrieving token level is at metadata level
+            level = data['data']['metadata']['level'])
+    except:
+        print('error in retrieving info')
+    return level
