@@ -171,3 +171,7 @@ Fixed league api so that it doesnt break when calling an empty dict
 Brian Wang -- 2022-12-16 14:00
 --------------------------------------------------------------
 Keys updated to standard naming convention
+
+Jian Hong Li -- 2022-12-19 13:37
+--------------------------------------------------------------
+Populate insult database and created add_insult() method
