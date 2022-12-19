@@ -87,7 +87,7 @@ def apexL_info(platform, username): #Platforms: 1 = XBOX 2 = PSN 5 = Origin / PC
             token = file.read().strip()
             url = f'https://public-api.tracker.gg/apex/v1/standard/profile/{platform}/{username}'
             data = json.loads(requests.get(url, headers = {'TRN-Api-Key': token }).text) #set up retrieving token level is at metadata level
-            level = data['data']['metadata']['level'])
+            level = data['data']['metadata']['level']
     except:
         print('error in retrieving info')
     return level
