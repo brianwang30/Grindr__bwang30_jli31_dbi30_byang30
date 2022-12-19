@@ -10,7 +10,7 @@ c.execute("CREATE TABLE if not Exists users(ID INTEGER PRIMARY KEY AUTOINCREMENT
 # Insult database
 c.execute("CREATE TABLE if not Exists insult(lv5 TEXT, lv4 TEXT, lv3 TEXT, lv2 TEXT, lv1 TEXT);")
 # Grassmeter
-c.execute("CREATE TABLE if not Exists grassmeter(ID INTEGER PRIMARY KEY AUTOINCREMENT, Quiz_Grass INTEGER, Grass INTEGER);")
+c.execute("CREATE TABLE if not Exists grassmeter(ID INTEGER PRIMARY KEY AUTOINCREMENT, Quiz_Grass INTEGER, Grass INTEGER, Game_Grass INTEGER);")
 # Game accounts
 c.execute("CREATE TABLE if not Exists game(ID INTEGER PRIMARY KEY AUTOINCREMENT, Game TEXT, Game_Username TEXT);")
 its = ["You have never touched grass...@@", "you're terrible@@", "mmm not bad@@", "getting there@@", "as green as nature!@@"]
@@ -93,7 +93,7 @@ def get_game_grass(id):
     c = db_connect()
     if ID_exist(id):
         c.execute('SELECT Game_Grass FROM grassmeter WHERE ID = ?', (id,))
-        text = c.fetchone()[3]
+        text = c.fetchone()[0]
         return text
     return "User doesn't exist"
 
@@ -125,7 +125,7 @@ def update_account_grass(id, grass):
 def update_quiz_grass(id, grass):
     old = get_quiz_grass(id)
     c = db_connect()
-    c.execute('UPDATE grassmeter SET Quiz_Grass =? WHERE ID=?;', (old + grass,))
+    c.execute('UPDATE grassmeter SET Quiz_Grass =? WHERE ID=?;', (old + grass, id))
     db_close()
     return None
 
