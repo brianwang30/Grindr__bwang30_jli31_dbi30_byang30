@@ -12,7 +12,6 @@ def random_poke():
     rand_index = random.randrange(900) #around the max amount of pokemon
     request_data = requests.get(f"https://pokeapi.co/api/v2/pokemon/{rand_index}")
     data = request_data.json()
-
     #Name
     info["name"] = data["name"]
     #Sprite Link to a PNG
@@ -30,6 +29,7 @@ def random_poke():
 def random_anime():
     info = {}
     dir = os.getcwd()
+    print(dir)
     if dir[len(dir)-3:] != 'app':
         os.chdir("app/")
 
@@ -41,7 +41,7 @@ def random_anime():
     data = ""
     client_id = "" #Pulling api key
     try: #check for if text file for key exist
-        with open("keys/MAL_key.txt", "r") as file:
+        with open("keys/key_MAL.txt", "r") as file:
             api_key = file.read().strip()
             client_id = api_key
             data = json.loads(requests.get(url, headers={"X-MAL-CLIENT-ID": client_id}).text)
@@ -60,8 +60,6 @@ def random_anime():
         print("No API key provided.")
     return info
 
-#pp.pprint(random_anime())
-
 def find_summoner_info(user):
     info = {}
     dir = os.getcwd()
@@ -76,7 +74,7 @@ def find_summoner_info(user):
             data = json.loads(requests.get(url, headers = {"X-Riot-Token" : token}).text)
             url = f'https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{data["id"]}'
             mastery_data = json.loads(requests.get(url, headers = {"X-Riot-Token" : token}).text)
-            
+
             info["Name"] = user
             info["Level"] = data["summonerLevel"]
             info["id"] = data["id"]
@@ -84,19 +82,16 @@ def find_summoner_info(user):
             info['points'] = mastery_data[0]["championPoints"]
     except:
         print("No API key provided.")
-    #Getting name of highest champion mastery bc riot api only gives champ id
-    #ids_to_name = requests.get("https://ddragon.leagueoflegends.com/cdn/12.23.1/data/en_US/champion.json").json()
-    #print(list(filter(lambda x:x["id"] == mastery_data[0]["championId"], ids_to_name)))
     return info
 
 def apexL_info(platform, username): #Platforms: 1 = XBOX 2 = PSN 5 = Origin / PC
     dir = os.getcwd()
     if dir[len(dir)-3:] != 'app':
         os.chdir("app/")
-        
+
     level = 0
     try:
-        with open("keys/key_Apex.txt", "r") as file:            
+        with open("keys/key_Apex.txt", "r") as file:
             token = file.read().strip()
             url = f'https://public-api.tracker.gg/apex/v1/standard/profile/{platform}/{username}'
             data = json.loads(requests.get(url, headers = {'TRN-Api-Key': token }).text) #set up retrieving token level is at metadata level

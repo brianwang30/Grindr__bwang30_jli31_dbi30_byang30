@@ -54,8 +54,8 @@ def authenticate():
 @app.route('/logout')
 def logout():
   session.pop('username')
-  #return redirect('/')
-  return render_template('questionnaire.html')
+  return redirect('/')
+  #return render_template('questionnaire.html')
 
 #prof page
 @app.route('/profile', methods=['GET'])
