@@ -8,7 +8,15 @@
     <title>Grass</title>
     <script src="../static/js/main.js" defer></script>
 </head>
-<body class="questionnaire d-flex flex-column align-items-center">
-
+<body class="questionnaire d-flex flex-column align-items-center justify-content-center">
+    <div class="questionnaire-form">
+        <label class="form-label green-text">
+            On average, how many hours of sports do you play per day?
+        </label>
+        <input type="range" class="form-range" name="sports"
+        value="0" min="0" max="24"
+        oninput="this.nextElementSibling.value = this.value">
+        <output class="sports-output">0</output>
+    </div>
 
 </body>
