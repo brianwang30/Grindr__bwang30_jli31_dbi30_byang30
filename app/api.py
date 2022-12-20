@@ -30,6 +30,7 @@ def random_poke():
 def random_anime():
     info = {}
     dir = os.getcwd()
+    print(dir)
     if dir[len(dir)-3:] != 'app':
         os.chdir("app/")
 
@@ -41,7 +42,7 @@ def random_anime():
     data = ""
     client_id = "" #Pulling api key
     try: #check for if text file for key exist
-        with open("keys/MAL_key.txt", "r") as file:
+        with open("keys/key_MAL.txt", "r") as file:
             api_key = file.read().strip()
             client_id = api_key
             data = json.loads(requests.get(url, headers={"X-MAL-CLIENT-ID": client_id}).text)
