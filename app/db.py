@@ -129,7 +129,7 @@ def get_grasslv(id):
         elif(grass > 2500):
             return "lv2"
         else:
-            return "lv1" 
+            return "lv1"
 
 
 def update_account_grass(id, grass):
@@ -155,7 +155,7 @@ def update_grass(id, grass):
 
 def update_game_grass(id, lv):
     c = db_connect()
-    c.execute('UPDATE grassmeter SET Game_Grass =? WHERE ID=?;', (lv * 100, id))
+    c.execute('UPDATE grassmeter SET Game_Grass =? WHERE ID=?;', (lv * 10, id))
     db_close()
     return None
 
