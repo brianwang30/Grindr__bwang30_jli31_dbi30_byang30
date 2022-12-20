@@ -83,11 +83,11 @@ button:hover {
 /*---------- questionnaire css ----------*/
 
 .questionnaire-form {
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(0,0,0,0.8);
     border-radius: 15px;
     padding: 20px;
     width: 30vw;
-
+    color: white;
 } 
 
 /*---------- end of questionnaire css ----------*/
@@ -365,16 +365,29 @@ nav.sticky .grass-meter .value {
 
 @keyframes bannerClose {
     50% {width: 150px;}
-    90% {margin-top: 0;}
+    90% {margin-top: 80px;}
     80% {height: 100%;}
-    100% {width: 0; height: 0; margin-top: -80px;}
+    100% {width: 0; height: 0; margin-top: 0;}
 }
 
 .banner.appear {
     animation-name: bannerClose;
     animation-duration: 4s;
     animation-fill-mode: forwards;
+}
+
+@keyframes bannerCloseAnime {
+    50% {width: 150px;}
+    90% {margin-top: 0;}
+    80% {height: 100%;}
+    100% {width: 0; height: 0; margin-top: -80px;}
+}
+
+.animequiz .banner.appear {
     margin-top: 0;
+    animation-name: bannerCloseAnime;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
 }
 
 .quiz-img {

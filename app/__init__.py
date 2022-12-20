@@ -50,12 +50,28 @@ def authenticate():
   session['username'] = request.form['username']
   return redirect('/profile')
 
+#questionnaire stuff
+@app.route('/questionnaire', methods=['GET'])
+def questionnaire():
+  return render_template('questionnaire.html')
+
+@app.route('/submitquestionnaire', methods=['POST'])
+def submitquestionnaire():
+  sports_hours = int(request.form['sports'])
+  games_hours = int(request.form['games'])
+  submit_questions(session['username'])
+  user_id = get_userID(session['username'])
+
+  update_quiz_grass(user_id, 
+  sports_hours*50 +
+  games_hours*-50)
+  return redirect('/profile')
+
 #logout
 @app.route('/logout')
 def logout():
   session.pop('username')
   return redirect('/')
-  #return render_template('questionnaire.html')
 
 #prof page
 @app.route('/profile', methods=['GET'])
@@ -63,7 +79,9 @@ def profile():
   id = get_userID(session['username'])
   if not session:
     return redirect('/')
-  return render_template('profile.html', grassometer = get_grass(id))
+  elif user_did_questions(session['username']):
+    return render_template('profile.html', grassometer = get_grass(id))
+  return redirect('/questionnaire')
 
 #pokemon quiz page
 @app.route('/pokequiz/<stat>', methods=['GET'])

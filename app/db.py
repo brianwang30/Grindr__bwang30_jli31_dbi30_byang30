@@ -56,6 +56,18 @@ def verify(username, password):
     else:
         return False
 
+def user_did_questions(username):
+    c = db_connect()
+    c.execute('SELECT Did_Questions FROM users WHERE username=?', (username,))
+    did_questions = c.fetchone()
+    db_close()
+    return did_questions[0]
+    
+def submit_questions(username):
+    c = db_connect()
+    c.execute('UPDATE users SET Did_Questions=? WHERE username=?', (True, username,))
+    db_close()
+
 def get_insult(grass_level):
     c = db_connect()
     c.execute('SELECT ' + str(grass_level) + ' FROM insult;')
