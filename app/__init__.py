@@ -180,15 +180,20 @@ def game():
   id = get_userID(session['username'])
   #update_gameusername(id, )
   #when funct
-  league = find_summoner_info(request.form.get('league'))
-  print(league)
   levelL = 0
-  if len(league) != 0:
-    levelL = -league["Level"]
+  levelA = 0
 
-  apex = apexL_info(int(request.form.get('platform')), request.form.get('apex'))
-  print(apex)
-  levelA = -apex
+  if (request.form.get('league') != ""):
+    league = find_summoner_info(request.form.get('league'))
+    print(league)
+    if len(league) != 0:
+      levelL = -league["Level"]
+  
+  if (request.form.get('platform') != None and request.form.get('apex') != ""):
+    apex = apexL_info(int(request.form.get('platform')), request.form.get('apex'))
+    print(apex)
+    levelA = -apex
+
   total = levelL + levelA
   update_game_grass(id, total)
 
