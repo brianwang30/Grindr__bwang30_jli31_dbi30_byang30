@@ -38,7 +38,7 @@ def make_account():
   create_user(request.form.get('username'), request.form.get('password'))
   session['username'] = request.form['username']
   #return render_template("profile.html")
-  return redirect('/profile')
+  return redirect('/questionnaire')
 
 @app.route('/auth', methods=['GET', 'POST'])
 def authenticate():
@@ -79,9 +79,9 @@ def profile():
   id = get_userID(session['username'])
   if not session:
     return redirect('/')
-  elif user_did_questions(session['username']):
-    return render_template('profile.html', grassometer = get_grass(id))
-  return redirect('/questionnaire')
+  #elif user_did_questions(session['username']):
+  return render_template('profile.html', grassometer = get_grass(id))
+  #return redirect('/questionnaire')
 
 #pokemon quiz page
 @app.route('/pokequiz/<stat>', methods=['GET'])
@@ -183,9 +183,19 @@ def game():
   league = find_summoner_info(request.form.get('league'))
   print(league)
   if len(league) != 0:
-    level = -league["Level"]
-    update_game_grass(id, level)
+    levelL = -league["Level"]
+    update_game_grass(id, levelL)
+
+  platform = request.form.get('platform')
+  apexL = request.form.get('apex')
+  apex = apexL_info(platform, apexL)
+  print(apex)
+  levelA = -apex
+  update_game_grass(id, levelA)
+
   return redirect('/profile')
+
+  
 
 
 if __name__ == '__main__':

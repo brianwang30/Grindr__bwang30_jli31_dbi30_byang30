@@ -60,6 +60,10 @@ def user_did_questions(username):
     c = db_connect()
     c.execute('SELECT Did_Questions FROM users WHERE username=?', (username,))
     did_questions = c.fetchone()
+    
+    print(username)
+    print(did_questions[0])
+
     db_close()
     return did_questions[0]
     
@@ -100,7 +104,7 @@ def get_grass(id):
         quiz = get_quiz_grass(id)
         game = get_game_grass(id)
         return quiz + game
-    return "User doesn't exist"
+    return "User doesn't exist (1)"
 
 def get_game_grass(id):
     c = db_connect()
@@ -108,7 +112,7 @@ def get_game_grass(id):
         c.execute('SELECT Game_Grass FROM grassmeter WHERE ID = ?', (id,))
         text = c.fetchone()[0]
         return text
-    return "User doesn't exist"
+    return "User doesn't exist (2)"
 
 def get_quiz_grass(id):
     c = db_connect()
@@ -117,7 +121,7 @@ def get_quiz_grass(id):
         text = c.fetchone()
         db_close()
         return text[1]
-    return "User doesn't exists"
+    return "User doesn't exist (3)"
 
 def get_gameuser(id):
     c = db_connect()
@@ -126,7 +130,7 @@ def get_gameuser(id):
         text = c.fetchone()
         db_close()
         return text[0]
-    return "User doesn't exist"
+    return "User doesn't exist (4)"
 
 def get_grasslv(id):
     c = db_connect()
