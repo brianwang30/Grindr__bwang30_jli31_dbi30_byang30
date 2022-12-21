@@ -182,16 +182,15 @@ def game():
   #when funct
   league = find_summoner_info(request.form.get('league'))
   print(league)
+  levelL = 0
   if len(league) != 0:
     levelL = -league["Level"]
-    update_game_grass(id, levelL)
 
-  platform = request.form.get('platform')
-  apexL = request.form.get('apex')
-  apex = apexL_info(platform, apexL)
+  apex = apexL_info(int(request.form.get('platform')), request.form.get('apex'))
   print(apex)
   levelA = -apex
-  update_game_grass(id, levelA)
+  total = levelL + levelA
+  update_game_grass(id, total)
 
   return redirect('/profile')
 
