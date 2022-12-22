@@ -77,10 +77,13 @@ def logout():
 @app.route('/profile', methods=['GET'])
 def profile():
   id = get_userID(session['username'])
+  league_user = get_gameuser(id, 'league')
+  apex_user = get_gameuser(id, 'apex')
   if not session:
     return redirect('/')
   #elif user_did_questions(session['username']):
-  return render_template('profile.html', grassometer = get_grass(id))
+  return render_template('profile.html', grassometer = get_grass(id), 
+  league_user = league_user, apex_user = apex_user)
   #return redirect('/questionnaire')
 
 #pokemon quiz page
@@ -184,12 +187,13 @@ def game():
   levelA = 0
 
   if (request.form.get('league') != ""):
+    update_gameusername(id, 'league', request.form.get('league'))
     league = find_summoner_info(request.form.get('league'))
     print(league)
-    if len(league) != 0:
-      levelL = -league["Level"]
+    levelL = -league["Level"]
   
   if (request.form.get('platform') != None and request.form.get('apex') != ""):
+    update_gameusername(id, 'apex', request.form.get('apex'))
     apex = apexL_info(int(request.form.get('platform')), request.form.get('apex'))
     print(apex)
     levelA = -apex

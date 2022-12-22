@@ -13,7 +13,7 @@ c.execute("CREATE TABLE if not Exists insult(lv5 TEXT, lv4 TEXT, lv3 TEXT, lv2 T
 # Grassmeter
 c.execute("CREATE TABLE if not Exists grassmeter(ID INTEGER PRIMARY KEY AUTOINCREMENT, Quiz_Grass INTEGER, Grass INTEGER, Game_Grass INTEGER);")
 # Game accounts
-c.execute("CREATE TABLE if not Exists game(ID INTEGER PRIMARY KEY AUTOINCREMENT, Game TEXT, Game_Username TEXT);")
+c.execute("CREATE TABLE if not Exists game(ID INTEGER, Game TEXT, Game_Username TEXT);")
 its = ["You probably live in your parents' basement@@", "Looks like all the grass you have touched were digital!@@", "This could go either way, what are you really?@@", "Are you too poor to afford a computer? Or are you lying on the quizes?@@", "You green as nature!@@"]
 c.execute('INSERT or IGNORE INTO insult(lv5, lv4, lv3, lv2, lv1) VALUES (?, ?, ?, ?, ?);', (its[0], its[1], its[2], its[3],its[4]))
 db.commit()
@@ -32,7 +32,6 @@ def create_user(username, password):
     c = db_connect()
     c.execute('INSERT INTO users(username, password, Did_Questions) VALUES (?, ?, ?);', (username, password, False))
     c.execute('INSERT INTO grassmeter(Quiz_Grass, Grass, Game_Grass) VALUES (?, ?, ?);', (0, 0, 0))
-    c.execute('INSERT INTO game(Game, Game_Username) VALUES (?,?);', ("LOL", ""))
     db.commit()
     #db_close() Dont know what exactly the problem is but dont uncomment this for signup to work
 
@@ -71,6 +70,7 @@ def submit_questions(username):
     c = db_connect()
     c.execute('UPDATE users SET Did_Questions=? WHERE username=?', (True, username,))
     db_close()
+    return None
 
 def get_insult(grass_level):
     c = db_connect()
@@ -123,14 +123,14 @@ def get_quiz_grass(id):
         return text[1]
     return "User doesn't exist (3)"
 
-def get_gameuser(id):
+def get_gameuser(id, game):
     c = db_connect()
-    if ID_exist(id):
-        c.execute('SELECT Game_Username FROM game WHERE ID =?', (id,))
-        text = c.fetchone()
-        db_close()
-        return text[0]
-    return "User doesn't exist (4)"
+    c.execute('SELECT Game_Username FROM game WHERE ID=? AND Game=?;', (id, game))
+    text = c.fetchone()
+    db_close()
+    if text == None:
+        return text
+    return text[0]
 
 def get_grasslv(id):
     c = db_connect()
@@ -175,9 +175,14 @@ def update_game_grass(id, lv):
     db_close()
     return None
 
-def update_gameusername(id, game_username):
+def update_gameusername(id, game, game_username):
     c = db_connect()
-    c.execute('UPDATE game SET Game_Username =? WHERE ID=?;', (game_username,id))
+    c.execute('SELECT game_username FROM game WHERE ID=? AND Game=?;', (id, game))
+    check = c.fetchone()
+    if (check != None):
+        c.execute('UPDATE game SET Game_Username=? WHERE ID=? AND Game=?;', (game_username, id, game))
+    else:
+        c.execute('INSERT INTO game(ID, Game, Game_Username) VALUES (?,?,?);', (id, game, game_username))
     db_close()
     return None
 

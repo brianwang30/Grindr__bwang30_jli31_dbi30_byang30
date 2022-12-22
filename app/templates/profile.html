@@ -51,13 +51,19 @@
     </div>
 
     <div class="section league">
+      {% if league_user == None %}
       <div class="game-user-inputs">
         <label>Are you a filthy League player? <br> Enter your username here!</label>
         <input type="text" class="form-control" name="league">
       </div>
+      {% else %}
+      <div class="blue-text">{{league_user}}</div>
+      <div class="league-level">459</div>
+      {% endif %}
     </div>
 
     <div class="section apex">
+      {% if apex_user == None %}
       <div class="game-user-inputs">
         <label>You play Apex but you are not a legend? <br> Enter your username here!</label>
         <input type="text" class="form-control" name="apex">
@@ -70,7 +76,12 @@
         <input type="radio" id="Origin/PC" name="platform" value="5">
         <label for="Origin/PC">Origin/PC</label><br>
       </div>
+      {% else %}
+      <div class="blue-text">{{apex_user}}</div>
+
+      {% endif %}
     </div>
+
 
     <button formaction="/games">Submit your game usernames 🗿</button>
   </form>
