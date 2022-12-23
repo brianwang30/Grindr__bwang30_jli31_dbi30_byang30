@@ -125,12 +125,20 @@ def get_quiz_grass(id):
 
 def get_gameuser(id, game):
     c = db_connect()
-    c.execute('SELECT Game_Username FROM game WHERE ID=? AND Game=?;', (id, game))
+    if 'apex' in game:
+        c.execute('SELECT Game_Username FROM game WHERE ID=? AND instr(Game, ?) > 0;', (id, 'apex'))
+    else:
+        c.execute('SELECT Game_Username FROM game WHERE ID=? AND Game=?;', (id, game))
     text = c.fetchone()
     db_close()
     if text == None:
         return text
     return text[0]
+
+def get_apex_platform(id, user):
+    c = db_connect()
+    c.execute('SELECT Game FROM game WHERE ID=? and Game_Username=?;', (id, user))
+    return int(c.fetchone()[0][0])
 
 def get_grasslv(id):
     c = db_connect()

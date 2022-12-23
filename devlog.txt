@@ -17,6 +17,7 @@ AO4 - Grassameter Insult
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 ==============================================================
+
 Jian Hong Li -- 2022-12-06 14:04
 --------------------------------------------------------------
 The script design doc feedbacks
@@ -24,15 +25,20 @@ Add bootstrap to component map
 Specify insults based on grass level
 
 ==============================================================
+
 Donald Bi -- 2022-12-07 12:31
 --------------------------------------------------------------
 Feedback told us to specify certain elements such as table values, and also to include bootstrap to our design.
 Revised the doc by adding bootstrap to design and diagram and explaining quiz grass value.
 
+==============================================================
+
 Brian Wang -- 2022-12-07 13:00
 --------------------------------------------------------------
 Made requirements.txt
 Updated readme
+
+==============================================================
 
 All -- 2022-12-07 13:00
 --------------------------------------------------------------
@@ -41,26 +47,37 @@ Begun... code? coding?
 Website functional (technically!)
 
 ==============================================================
+
 Brian (Paul) Yang -- 2022-12-8 11:00
 --------------------------------------------------------------
 Created function in api.py to pull a random pokemon's info (sprite, type(s), name)
+
+==============================================================
 
 Brian (Paul) Yang -- 2022-12-8 12:46
 --------------------------------------------------------------
 Created function in api.py to get an anime along with its cover picture and name
 
+==============================================================
+
 Brian (Paul) Yang -- 2022-12-8 14:00
 --------------------------------------------------------------
 Created function in api.py with Riot Games api to find level in League of Legends
+
+==============================================================
 
 Brian (Beedub) Wang -- 2022-12-8 14:00
 --------------------------------------------------------------
 Made cookie function
 Broke login function (??? I think i need to log the cookies somewhere else)
 
+==============================================================
+
 Donald Bi -- 2022-12-8 14:00
 --------------------------------------------------------------
 Added more stying to the login page, now it has a background and the buttons have effects when hovered.
+
+==============================================================
 
 Brian (Beedub) Wang -- 2022-12-8 17:49
 --------------------------------------------------------------
@@ -68,80 +85,104 @@ Login works again (cookie issue, skill issue)
 devlog reformat
 
 ==============================================================
+
 Jian Hong Li -- 2022-12-09 13:37
 ---------------------------------------------------------------
 Added some function for db
+
+==============================================================
 
 Brian (Beedub) Wang -- 2022-12-9 14:01
 --------------------------------------------------------------
 Begun grass calc quiz process
 
+==============================================================
+
 Donald Bi -- 2022-12-9 14:03
 --------------------------------------------------------------
 Changed some styling for the login page, started work on the profile navbar.
+
+==============================================================
 
 Donald Bi -- 2022-12-9 22:10
 --------------------------------------------------------------
 Finished profile navbar, looks hot now; started working on different game sections.
 
 ==============================================================
+
 Brian (Paul) Yang -- 2022-12-10 13:11
 --------------------------------------------------------------
 Created function to update grass count based on a user's league username/levels (half tested D:)
+
+==============================================================
 
 Donald Bi -- 2022-12-10 14:16
 --------------------------------------------------------------
 Finished styling registration page and added confirm password place, also added logging out and styled profile a bit
 
 ==============================================================
+
 Donald Bi -- 2022-12-11 15:30
 --------------------------------------------------------------
 Did most of pokequiz page, addded the javascript necessary to make multiple choice function correctly (and it looks sexy)
 
 ==============================================================
+
 Jian Hong Li -- 2022-12-11 21:48
 --------------------------------------------------------------
 Fixed database stuff
 
 ==============================================================
+
 Brian (Paul) Yang -- 2022-12-12 12:35
 --------------------------------------------------------------
 Added chacks to MAL api calls so it doesnt break and crash the whole thing
 
 ==============================================================
+
 Brian (Paul) Yang -- 2022-12-12 12:35
 --------------------------------------------------------------
 Created animequiz html (correct and incorrect page) that displays a picture and 4 choices
 
 ==============================================================
+
 Brian Wang -- 2022-12-12 14:00
 --------------------------------------------------------------
 (Struggled with MAL)
 
+==============================================================
+
 Donald Bi -- 2022-12-12 14:02
 --------------------------------------------------------------
 Rerouted aniquiz to animequiz
+
+==============================================================
 
 Jian Hong Li -- 2022-12-12 22:34
 --------------------------------------------------------------
 Grass ooo Meterrr
 
 ==============================================================
+
 Brian Wang -- 2022-12-13 14:00
 --------------------------------------------------------------
 Fixed bug with quizzes that let you farm questions by redirecting
 pokemon and anime quiz now all redirect and work properly
+
+==============================================================
 
 Donald Bi -- 2022-12-13 14:02
 --------------------------------------------------------------
 The pokemon quiz now actually puts the correct answer in random places
 
 ==============================================================
-Brian Yang -- 2022-12-14 18:00
+
+Brian Yang -- 2022-12-14 14:00
 --------------------------------------------------------------
 Created apex legend api (only calls for now) Can't find where the levels is in json file
 
 ==============================================================
+
 Brian Wang -- 2022-12-14 14:00
 --------------------------------------------------------------
 Fixed some redirect problems to animequiz
@@ -149,38 +190,96 @@ started grass calc with league levels
 (api key hell)
 
 ==============================================================
+
+Donald Bi -- 2022-12-14 14:03
+--------------------------------------------------------------
+Styled the quiz images and started working on correct/wrong banners for the quizzes
+
+==============================================================
+
 Brian Yang -- 2022-12-14 18:00
 --------------------------------------------------------------
 Changed league api to list everything we want (name, id, mastery, level, top champ)
 
 ==============================================================
-Brian Wang + Paul -- 2022-12-15 14:00
---------------------------------------------------------------
-League frontend stuff now works
 
 Jian Hong Li -- 2022-12-15 13:37
 --------------------------------------------------------------
 create database for game and grass insults
 
 ==============================================================
-Brian Yang -- 2022-12-14 18:00
+
+Brian Wang + Paul -- 2022-12-15 14:00
+--------------------------------------------------------------
+League frontend stuff now works
+
+==============================================================
+
+Donald Bi -- 2022-12-15 14:03
+--------------------------------------------------------------
+Made it so that the correct/wrong banner shows the text now and also added the javascript for its animation
+
+==============================================================
+
+Brian Yang -- 2022-12-15 18:00
 --------------------------------------------------------------
 Fixed league api so that it doesnt break when calling an empty dict
 
 ==============================================================
+
 Brian Wang -- 2022-12-16 14:00
 --------------------------------------------------------------
 Keys updated to standard naming convention
+
+==============================================================
+
+Donald Bi -- 2022-12-15 15:34
+--------------------------------------------------------------
+Finished the animations for when the correct/wrong banner appears, and then disappears
+Also added the animation for clicking a multiple choice answer in a quiz (the boing thing)
+Fixed capitalization issues
+
+==============================================================
 
 Jian Hong Li -- 2022-12-19 13:37
 --------------------------------------------------------------
 Populate insult database and created add_insult() method
 
 ==============================================================
+
 Brian Yang -- 2022-12-19 14:00
 --------------------------------------------------------------
 Created a apex legends api call that returns the level of the player
 
+==============================================================
+
 Brian Wang -- 2022-12-19 14:00
 --------------------------------------------------------------
 Added forced change directories in api calling code to ensure that the user will be in app to read keys
+
+==============================================================
+
+Donald Bi -- 2022-12-19 14:03
+--------------------------------------------------------------
+Fixed the animations having too much margins and started working on the questionnaire
+
+==============================================================
+
+Donald Bi -- 2022-12-20 14:03
+--------------------------------------------------------------
+Added backend for the questionnaire
+Finished styling the questionnaire
+Tested the questionnaire
+
+==============================================================
+
+Donald Bi -- 2022-12-21 13:18
+--------------------------------------------------------------
+Fixed a bug where the app breaks when you don't put an apex or league username
+
+==============================================================
+
+Donald Bi -- 2022-12-21 19:47
+--------------------------------------------------------------
+Added stuff to profile when you input game username(shows level and stuff)
+Reworked backend to make this work

@@ -58,7 +58,17 @@
       </div>
       {% else %}
       <div class="blue-text">{{league_user}}</div>
-      <div class="league-level">459</div>
+      <div class="league-stat">
+        <div class="stat">
+          <img class="league-border" src="../static/images/leagueborder.png"></img>
+          <div class="league-level-text green-text">Level: {{league_info['Level']}}</div>
+        </div>
+        <div class="stat">
+          <img class='league-mastery' src="https://kboosting.com/img/11930/c/league-of-legends-champion-mastery-500x500.png" alt="">
+          <div class="league-mastery-text green-text">Highest Mastery Points: {{league_info['points']}}</div>
+        </div>
+      </div>
+      <input type="text" class="form-control w-25 mt-5" name="league" placeholder="Update username">
       {% endif %}
     </div>
 
@@ -78,7 +88,11 @@
       </div>
       {% else %}
       <div class="blue-text">{{apex_user}}</div>
-
+      <div class="stat">
+        <img class="apex-badge" src="../static/images/apexbadge.png"></img>
+        <div class="apex-level-text green-text">Level: {{apex_info}}</div>
+      </div>
+      <input type="text" class="form-control w-25 mt-5" name="apex" placeholder="Update username">
       {% endif %}
     </div>
 

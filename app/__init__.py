@@ -79,11 +79,22 @@ def profile():
   id = get_userID(session['username'])
   league_user = get_gameuser(id, 'league')
   apex_user = get_gameuser(id, 'apex')
+  
+  league_info = {}
+  if league_user != None:
+    league_info = find_summoner_info(league_user)
+    
+  apex_info = None
+  if apex_user != None:
+    apex_platform = get_apex_platform(id, apex_user)
+    apex_info = apexL_info(apex_platform, apex_user)
+  
   if not session:
     return redirect('/')
   #elif user_did_questions(session['username']):
   return render_template('profile.html', grassometer = get_grass(id), 
-  league_user = league_user, apex_user = apex_user)
+  league_user = league_user, apex_user = apex_user,
+  league_info = league_info, apex_info = apex_info)
   #return redirect('/questionnaire')
 
 #pokemon quiz page
@@ -186,15 +197,18 @@ def game():
   levelL = 0
   levelA = 0
 
-  if (request.form.get('league') != ""):
-    update_gameusername(id, 'league', request.form.get('league'))
-    league = find_summoner_info(request.form.get('league'))
+  league_username = request.form.get('league', )
+  if (league_username != "" and league_username != None):
+    update_gameusername(id, 'league', league_username)
+    league = find_summoner_info(league_username)
     print(league)
     levelL = -league["Level"]
   
-  if (request.form.get('platform') != None and request.form.get('apex') != ""):
-    update_gameusername(id, 'apex', request.form.get('apex'))
-    apex = apexL_info(int(request.form.get('platform')), request.form.get('apex'))
+  apex_platform = request.form.get('platform')
+  apex_username = request.form.get('apex')
+  if (apex_platform != None and apex_username != "" and apex_username != None):
+    update_gameusername(id, f'{apex_platform}-apex', apex_username)
+    apex = apexL_info(int(apex_platform), apex_username)
     print(apex)
     levelA = -apex
 
